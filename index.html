@@ -478,26 +478,24 @@
       </div>
 
       <div class="action-buttons">
-        <button class="btn btn-primary" id="saveContactBtn" onclick="saveAsImage()">
+        <button class="btn btn-primary" id="saveContactBtn" onclick="saveToContacts()">
           <span class="btn-icon">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-              <polyline points="7 10 12 15 17 10"/>
-              <line x1="12" y1="15" x2="12" y2="3"/>
+              <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/>
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
+              <path d="M12 11v6M9 14h6"/>
             </svg>
           </span>
-          <span class="btn-text">Save to Gallery</span>
+          <span class="btn-text">Save to Contacts</span>
           <div class="spinner"></div>
         </button>
-        <button class="btn btn-secondary" id="shareCardBtn">
+        <button class="btn btn-secondary" id="saveImageBtn" onclick="saveAsImage()">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <circle cx="18" cy="5" r="3"/>
-            <circle cx="6" cy="12" r="3"/>
-            <circle cx="18" cy="19" r="3"/>
-            <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/>
-            <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
           </svg>
-          Share
+          Save Image
         </button>
       </div>
 
@@ -513,8 +511,8 @@
   <script>
     (function() {
       const toast = document.getElementById('liveToast');
-      const saveBtn = document.getElementById('saveContactBtn');
-      const shareBtn = document.getElementById('shareCardBtn');
+      const saveContactBtn = document.getElementById('saveContactBtn');
+      const saveImageBtn = document.getElementById('saveImageBtn');
       const cardElement = document.getElementById('businessCard');
       const renderContainer = document.getElementById('renderContainer');
 
@@ -528,11 +526,62 @@
         }, 3000);
       }
 
+      // Function to save contact to phone's address book
+      function saveToContacts() {
+        saveContactBtn.classList.add('loading');
+        saveContactBtn.disabled = true;
+        
+        // Create vCard (VCF) format
+        const vcardData = [
+          'BEGIN:VCARD',
+          'VERSION:3.0',
+          'FN:Sthembiso Dlamini',
+          'N:Dlamini;Sthembiso;;;',
+          'ORG:Quadrupleplay Holdings',
+          'TITLE:Chief Executive Officer',
+          'TEL;TYPE=CELL:+27 66 568 3126',
+          'EMAIL;TYPE=WORK:Sthembiso@quadrupleplay.holdings',
+          'ADR;TYPE=WORK:;;Office 7, Block C, Carpe Diem;26 Quantum Street;Techno Park;Stellenbosch;;South Africa',
+          'URL:https://www.quadrupleplay.co.za',
+          'NOTE:Quadrupleplay Holdings - CEO',
+          'END:VCARD'
+        ].join('\n');
+
+        // Create blob and download
+        const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        
+        // Create download link
+        const downloadLink = document.createElement('a');
+        downloadLink.href = url;
+        downloadLink.download = 'Sthembiso-Dlamini.vcf';
+        downloadLink.style.display = 'none';
+        
+        document.body.appendChild(downloadLink);
+        
+        // Trigger download
+        setTimeout(() => {
+          downloadLink.click();
+          
+          // Clean up
+          setTimeout(() => {
+            document.body.removeChild(downloadLink);
+            URL.revokeObjectURL(url);
+          }, 100);
+          
+          showToast('✓ Contact saved to device');
+          
+          // Reset button state
+          saveContactBtn.classList.remove('loading');
+          saveContactBtn.disabled = false;
+        }, 300);
+      }
+
       // Function to save business card as high-resolution image
       async function saveAsImage() {
         // Show loading state
-        saveBtn.classList.add('loading');
-        saveBtn.disabled = true;
+        saveImageBtn.classList.add('loading');
+        saveImageBtn.disabled = true;
         showToast('Generating high-res image...');
         
         try {
@@ -687,8 +736,8 @@
             }
             
             // Reset button state
-            saveBtn.classList.remove('loading');
-            saveBtn.disabled = false;
+            saveImageBtn.classList.remove('loading');
+            saveImageBtn.disabled = false;
             
           }, 'image/png', 1.0);
           
@@ -717,8 +766,8 @@
             showToast('⚠️ Could not save image');
           }
           
-          saveBtn.classList.remove('loading');
-          saveBtn.disabled = false;
+          saveImageBtn.classList.remove('loading');
+          saveImageBtn.disabled = false;
         }
       }
 
@@ -738,38 +787,10 @@
         showToast('✓ Crystal clear business card saved');
       }
 
+      // Expose functions to global scope for onclick
+      window.saveToContacts = saveToContacts;
       window.saveAsImage = saveAsImage;
 
-      // Share button handler
-      shareBtn.addEventListener('click', async (e) => {
-        e.preventDefault();
-        const shareData = {
-          title: 'Sthembiso Dlamini — CEO',
-          text: 'Sthembiso Dlamini, Chief Executive Officer at Quadrupleplay Holdings.',
-          url: 'https://www.quadrupleplay.co.za'
-        };
-
-        if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
-          try {
-            await navigator.share(shareData);
-            showToast('Shared successfully');
-          } catch (err) {
-            if (err.name !== 'AbortError') {
-              fallbackCopy();
-            }
-          }
-        } else {
-          fallbackCopy();
-        }
-      });
-
-      function fallbackCopy() {
-        navigator.clipboard.writeText('https://www.quadrupleplay.co.za').then(() => {
-          showToast('🔗 Link copied');
-        }).catch(() => {
-          showToast('Copy link manually');
-        });
-      }
     })();
   </script>
 </body>
