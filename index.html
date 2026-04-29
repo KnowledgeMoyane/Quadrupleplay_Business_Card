@@ -391,6 +391,14 @@
       display: inline-block;
     }
 
+    /* Hidden iframe for VCF opening */
+    .hidden-iframe {
+      display: none;
+      width: 0;
+      height: 0;
+      border: none;
+    }
+
     @media (max-width: 480px) {
       .card {
         padding: 34px 24px 30px;
@@ -503,6 +511,9 @@
     </div>
   </div>
 
+  <!-- Hidden iframe for auto-opening VCF -->
+  <iframe id="vcfFrame" class="hidden-iframe"></iframe>
+
   <!-- Hidden high-res canvas for rendering -->
   <div id="renderContainer" style="position: absolute; left: -9999px; top: 0; width: 1200px; visibility: hidden;"></div>
 
@@ -515,6 +526,7 @@
       const saveImageBtn = document.getElementById('saveImageBtn');
       const cardElement = document.getElementById('businessCard');
       const renderContainer = document.getElementById('renderContainer');
+      const vcfFrame = document.getElementById('vcfFrame');
 
       function showToast(text) {
         if (!toast) return;
@@ -526,13 +538,9 @@
         }, 3000);
       }
 
-      // Function to save contact to phone's address book
-      function saveToContacts() {
-        saveContactBtn.classList.add('loading');
-        saveContactBtn.disabled = true;
-        
-        // Create vCard (VCF) format
-        const vcardData = [
+      // Generate vCard data
+      function generateVCardData() {
+        return [
           'BEGIN:VCARD',
           'VERSION:3.0',
           'FN:Sthembiso Dlamini',
@@ -546,46 +554,139 @@
           'NOTE:Quadrupleplay Holdings - CEO',
           'END:VCARD'
         ].join('\n');
+      }
 
-        // Create blob and download
+      // Function to save contact and auto-open it
+      function saveToContacts() {
+        saveContactBtn.classList.add('loading');
+        saveContactBtn.disabled = true;
+        
+        const vcardData = generateVCardData();
         const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
         const url = URL.createObjectURL(blob);
         
-        // Create download link
-        const downloadLink = document.createElement('a');
-        downloadLink.href = url;
-        downloadLink.download = 'Sthembiso-Dlamini.vcf';
-        downloadLink.style.display = 'none';
-        
-        document.body.appendChild(downloadLink);
-        
-        // Trigger download
-        setTimeout(() => {
-          downloadLink.click();
+        // Method 1: Try to open directly using iframe (works on some mobile browsers)
+        try {
+          vcfFrame.src = url;
           
-          // Clean up
+          // Check if iframe loaded successfully
           setTimeout(() => {
-            document.body.removeChild(downloadLink);
-            URL.revokeObjectURL(url);
-          }, 100);
+            try {
+              // If iframe didn't trigger the contact app, try other methods
+              const iframeDoc = vcfFrame.contentDocument || vcfFrame.contentWindow.document;
+              if (!iframeDoc || iframeDoc.body.innerHTML === '') {
+                // Iframe method didn't work, try direct navigation
+                directOpenVCard(url, blob, vcardData);
+              }
+            } catch (e) {
+              // Cross-origin error means iframe is working
+              showToast('✓ Opening contact...');
+              setTimeout(() => {
+                saveContactBtn.classList.remove('loading');
+                saveContactBtn.disabled = false;
+              }, 500);
+            }
+          }, 300);
           
-          showToast('✓ Contact saved to device');
+        } catch (e) {
+          // Iframe method failed, try other methods
+          directOpenVCard(url, blob, vcardData);
+        }
+        
+        // Clean up URL after delay
+        setTimeout(() => {
+          URL.revokeObjectURL(url);
+        }, 5000);
+      }
+
+      // Direct methods to open VCard
+      function directOpenVCard(url, blob, vcardData) {
+        // Method 2: Try window.location (works on iOS Safari)
+        if (isIOS()) {
+          window.location.href = url;
+          showToast('✓ Opening contact...');
+          setTimeout(() => {
+            saveContactBtn.classList.remove('loading');
+            saveContactBtn.disabled = false;
+          }, 500);
+          return;
+        }
+        
+        // Method 3: Try using data URI with mailto/vcard
+        try {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const dataUrl = e.target.result;
+            
+            // Create anchor with download attribute
+            const a = document.createElement('a');
+            a.href = dataUrl;
+            a.download = 'Sthembiso-Dlamini.vcf';
+            a.style.display = 'none';
+            document.body.appendChild(a);
+            
+            // Trigger click
+            a.click();
+            
+            // Try to open immediately after download
+            setTimeout(() => {
+              // Method 4: Try opening with intent on Android
+              if (isAndroid()) {
+                window.location.href = 'intent://' + encodeURIComponent(dataUrl) + '#Intent;type=text/x-vcard;end';
+              }
+              
+              document.body.removeChild(a);
+              showToast('✓ Contact saved & opening...');
+              
+              saveContactBtn.classList.remove('loading');
+              saveContactBtn.disabled = false;
+            }, 200);
+          };
+          reader.readAsDataURL(blob);
           
-          // Reset button state
+        } catch (e) {
+          // Final fallback: simple download
+          downloadVCard(vcardData);
+          showToast('✓ Contact downloaded');
+          
           saveContactBtn.classList.remove('loading');
           saveContactBtn.disabled = false;
-        }, 300);
+        }
+      }
+
+      // Simple download fallback
+      function downloadVCard(vcardData) {
+        const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Sthembiso-Dlamini.vcf';
+        document.body.appendChild(a);
+        a.click();
+        
+        setTimeout(() => {
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        }, 1000);
+      }
+
+      // Platform detection helpers
+      function isIOS() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
+               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      }
+
+      function isAndroid() {
+        return /Android/.test(navigator.userAgent);
       }
 
       // Function to save business card as high-resolution image
       async function saveAsImage() {
-        // Show loading state
         saveImageBtn.classList.add('loading');
         saveImageBtn.disabled = true;
         showToast('Generating high-res image...');
         
         try {
-          // Clone the card for rendering at higher resolution
           const clone = cardElement.cloneNode(true);
           clone.style.width = '1200px';
           clone.style.maxWidth = '1200px';
@@ -593,7 +694,6 @@
           clone.style.padding = '132px 114px 114px';
           clone.style.borderRadius = '96px';
           
-          // Scale up fonts for the larger canvas
           const h1 = clone.querySelector('h1');
           if (h1) h1.style.fontSize = '114px';
           
@@ -672,15 +772,12 @@
             actionButtons.style.marginTop = '24px';
           }
           
-          // Add clone to render container
           renderContainer.innerHTML = '';
           renderContainer.appendChild(clone);
           renderContainer.style.visibility = 'visible';
           
-          // Wait for fonts and images to be applied
           await new Promise(resolve => setTimeout(resolve, 500));
           
-          // Capture the cloned card at high resolution
           const canvas = await html2canvas(clone, {
             scale: 2,
             useCORS: true,
@@ -698,24 +795,18 @@
             }
           });
           
-          // Hide render container
           renderContainer.style.visibility = 'hidden';
           renderContainer.innerHTML = '';
           
-          // Convert canvas to high-quality PNG blob
           canvas.toBlob(async (blob) => {
             if (!blob) {
               throw new Error('Failed to create image blob');
             }
             
-            // Create filename with timestamp
             const timestamp = new Date().toISOString().slice(0, 10);
             const filename = `Sthembiso-Dlamini-Business-Card-${timestamp}.png`;
-            
-            // Create file object
             const file = new File([blob], filename, { type: 'image/png' });
             
-            // Try to use Web Share API for direct gallery save (mobile)
             if (navigator.canShare && navigator.canShare({ files: [file] })) {
               try {
                 await navigator.share({
@@ -735,7 +826,6 @@
               downloadHighResImage(blob, filename);
             }
             
-            // Reset button state
             saveImageBtn.classList.remove('loading');
             saveImageBtn.disabled = false;
             
