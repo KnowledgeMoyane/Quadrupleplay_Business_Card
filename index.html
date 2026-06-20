@@ -1,887 +1,462 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
-  <title>Sthembiso Dlamini · Digital Card</title>
-  <!-- Poppins + DM Mono (no curly/serif fonts) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
-  <!-- html2canvas for image capture -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
-  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WEB TECH 511 · exam notes</title>
+  <!-- Font Awesome (optional but clean) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    /* ----- reset & base ----- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    :root {
-      --bg-white: #ffffff;
-      --card-bg: #ffffff;
-      --border-light: #e0e7e4;
-      --primary-blue: #1b4b6c;
-      --primary-green: #2c7a5a;
-      --accent-soft: #5ba88c;
-      --text-dark: #1a2b2c;
-      --text-muted: #5e6f6b;
-      --text-subtle: #7c8c87;
-      --hover-bg: #f4f9f7;
-      --shadow-sm: 0 6px 18px rgba(0,0,0,0.05);
+    body {
+      background: #f8faff;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+      padding: 2rem 1.5rem;
+      color: #1e293b;
+      line-height: 1.6;
     }
 
-    body {
-      background: #f5f7f6;
-      background-image: linear-gradient(135deg, #f0f4f3 0%, #ffffff 100%);
-      min-height: 100vh;
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      padding: 2rem 2.5rem;
+      border-radius: 32px;
+      box-shadow: 0 20px 40px -12px rgba(0,20,50,0.15);
+    }
+
+    /* ----- headers & titles ----- */
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      background: linear-gradient(145deg, #0b2b5c, #1e4a7a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.2rem;
       display: flex;
       align-items: center;
-      justify-content: center;
-      font-family: 'Poppins', sans-serif;
-      padding: 24px;
-      margin: 0;
-      position: relative;
+      gap: 12px;
+    }
+    h1 small {
+      font-size: 1rem;
+      font-weight: 400;
+      background: #e6edf8;
+      padding: 0.2rem 1rem;
+      border-radius: 40px;
+      -webkit-text-fill-color: #1e3a6b;
+      color: #1e3a6b;
+      margin-left: 10px;
     }
 
-    /* very light grain for texture */
-    body::after {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
-      pointer-events: none;
-      z-index: 0;
+    .subhead {
+      font-size: 1.1rem;
+      color: #475569;
+      border-left: 5px solid #3b82f6;
+      padding-left: 1.2rem;
+      margin: 0.5rem 0 2rem 0;
+      background: #f1f5fe;
+      border-radius: 0 20px 20px 0;
+      padding: 0.8rem 1.5rem;
     }
 
-    .card-wrapper {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      max-width: 440px;
+    h2 {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-top: 2.8rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 4px solid #dbeafe;
+      color: #0b2b5c;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    h2 i {
+      font-size: 1.8rem;
+      color: #2563eb;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin: 1.8rem 0 0.6rem 0;
+      color: #1e3a6b;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.2rem 0;
+      color: #2d4a7a;
+    }
+
+    /* ----- cards & boxes ----- */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin: 1.5rem 0 1rem 0;
     }
 
     .card {
-      position: relative;
-      background: var(--card-bg);
-      border: 1px solid #dce4e0;
-      border-radius: 32px;
-      box-shadow: 0 25px 45px rgba(0, 30, 20, 0.08), 0 0 0 1px rgba(44, 122, 90, 0.1);
-      padding: 44px 38px 38px;
-      animation: softFade 0.8s ease-out;
-      transition: box-shadow 0.2s;
-    }
-
-    .card:hover {
-      box-shadow: 0 30px 50px rgba(0, 40, 25, 0.12);
-    }
-
-    @keyframes softFade {
-      0% { opacity: 0; transform: translateY(18px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* top accent bar using logo colors */
-    .card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 24px;
-      right: 24px;
-      height: 3px;
-      background: linear-gradient(90deg, #1b4b6c, #2c7a5a, #1b4b6c);
-      border-radius: 8px 8px 0 0;
-      opacity: 0.8;
-    }
-
-    .brand-tag {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 28px;
-      font-family: 'DM Mono', monospace;
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: #1b4b6c;
-      font-weight: 500;
-    }
-
-    .brand-tag::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: #d0ddd6;
-    }
-
-    .profile-row {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      margin-bottom: 26px;
-    }
-
-    .logo-badge {
-      width: 64px;
-      height: 64px;
-      background: white;
-      border: 1px solid #c8d9d2;
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 10px 16px rgba(0,0,0,0.02);
       background: #ffffff;
-      flex-shrink: 0;
-      overflow: hidden;
-      padding: 8px;
-    }
-
-    .logo-badge img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-
-    .name-title h1 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 500;
-      font-size: 38px;
-      line-height: 1.2;
-      color: #1a2b2c;
-      letter-spacing: -0.3px;
-      margin-bottom: 4px;
-    }
-
-    .name-title h1 .highlight {
-      color: #1b4b6c;
-      font-weight: 600;
-    }
-
-    .job-position {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 400;
-      font-size: 13px;
-      letter-spacing: 0.3px;
-      color: #2c7a5a;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-transform: uppercase;
-      font-weight: 500;
-    }
-
-    .job-position::before {
-      content: '';
-      display: inline-block;
-      width: 16px;
-      height: 2px;
-      background: #2c7a5a;
-      border-radius: 2px;
-    }
-
-    .divider {
-      margin: 28px 0 24px;
-      height: 1px;
-      background: #e2ebe6;
-    }
-
-    .contact-list {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      margin-bottom: 30px;
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      text-decoration: none;
-      color: #1a2b2c;
-      padding: 8px 0;
-      border-radius: 10px;
-      transition: background 0.15s, transform 0.15s;
-      cursor: pointer;
-    }
-
-    a.contact-item {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    a.contact-item:hover {
-      background: #f6faf8;
-      transform: translateX(3px);
-      text-decoration: none;
-    }
-
-    .contact-item:not(a):hover {
-      background: #f6faf8;
-      transform: translateX(3px);
-    }
-
-    .icon-square {
-      width: 38px;
-      height: 38px;
-      background: #f0f6f3;
-      border: 1px solid #d9e8e0;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #1b4b6c;
-      flex-shrink: 0;
+      border-radius: 20px;
+      padding: 1.5rem 1.6rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03), 0 2px 6px rgba(0,20,40,0.05);
+      border: 1px solid #eef2f8;
       transition: 0.2s;
     }
-
-    .contact-item:hover .icon-square {
-      background: #e3f1ea;
-      border-color: #2c7a5a;
-      color: #0e3b2b;
+    .card:hover {
+      border-color: #b9d0f0;
+      box-shadow: 0 12px 24px -8px rgba(30, 64, 120, 0.08);
     }
 
-    .info-text {
-      display: flex;
-      flex-direction: column;
+    .card code, .inline-code {
+      background: #eef4fc;
+      padding: 0.2rem 0.6rem;
+      border-radius: 8px;
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.9rem;
+      color: #1e3a6b;
     }
 
-    .label {
-      font-family: 'DM Mono', monospace;
-      font-size: 8.5px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #7c8c87;
-      margin-bottom: 2px;
-      font-weight: 500;
-    }
-
-    .value {
-      font-family: 'Poppins', sans-serif;
-      font-weight: 400;
-      font-size: 14px;
-      color: #1e2f2d;
+    .code-block {
+      background: #0f1a2e;
+      color: #e2e8f0;
+      padding: 1rem 1.5rem;
+      border-radius: 16px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      margin: 0.8rem 0 1.2rem 0;
+      border-left: 4px solid #3b82f6;
+      white-space: pre-wrap;
       word-break: break-word;
-      line-height: 1.4;
+    }
+    .code-block code {
+      background: transparent;
+      color: inherit;
+      padding: 0;
     }
 
-    a .value {
-      color: #1b4b6c;
-      text-decoration: none;
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.2rem 0;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+    th {
+      background: #eef4fc;
+      text-align: left;
+      padding: 0.8rem 1rem;
+      font-weight: 600;
+      color: #0b2b5c;
+    }
+    td {
+      padding: 0.7rem 1rem;
+      border-top: 1px solid #e9edf4;
+    }
+    tr:hover td {
+      background: #f8fbff;
     }
 
-    a:hover .value {
-      color: #2c7a5a;
-      text-decoration: underline;
+    .highlight-box {
+      background: #f0f7ff;
+      border-radius: 20px;
+      padding: 1.2rem 2rem;
+      margin: 1.5rem 0;
+      border-left: 8px solid #2563eb;
     }
 
-    .action-buttons {
-      display: flex;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .btn {
-      flex: 1;
-      padding: 14px 10px;
-      font-family: 'Poppins', sans-serif;
-      font-weight: 500;
-      font-size: 11px;
-      letter-spacing: 0.4px;
-      text-transform: uppercase;
-      border: none;
-      border-radius: 14px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-      background: white;
-      text-decoration: none;
-    }
-
-    .btn-primary {
-      background: #1b4b6c;
-      color: white;
-      border: 1px solid #1b4b6c;
-      box-shadow: 0 4px 10px rgba(27, 75, 108, 0.2);
-    }
-
-    .btn-primary:hover {
-      background: #1f577a;
-      border-color: #1f577a;
-      box-shadow: 0 8px 16px rgba(27, 75, 108, 0.25);
-    }
-
-    .btn-secondary {
-      background: white;
-      border: 1px solid #cbd9d2;
-      color: #1b4b6c;
-    }
-
-    .btn-secondary:hover {
-      background: #f3f8f5;
-      border-color: #2c7a5a;
-      color: #0e3b2b;
-    }
-
-    .footer-note {
-      margin-top: 28px;
-      text-align: center;
-      font-family: 'DM Mono', monospace;
-      font-size: 8.5px;
-      letter-spacing: 0.25em;
-      color: #9aada6;
-      text-transform: uppercase;
-    }
-
-    .toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(15px);
-      background: #1b4b6c;
-      color: white;
-      padding: 10px 24px;
-      border-radius: 40px;
-      font-family: 'Poppins', sans-serif;
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.3px;
-      border: 1px solid #2c7a5a;
-      opacity: 0;
-      transition: opacity 0.2s, transform 0.2s;
-      pointer-events: none;
-      z-index: 100;
-      background: #0f2e3b;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.15);
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* Loading spinner for save button */
-    .spinner {
-      display: none;
-      width: 13px;
-      height: 13px;
-      border: 2px solid rgba(255,255,255,0.3);
-      border-top: 2px solid white;
-      border-radius: 50%;
-      animation: spin 0.6s linear infinite;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-
-    .btn-primary.loading .btn-text,
-    .btn-primary.loading .btn-icon {
-      display: none;
-    }
-    .btn-primary.loading .spinner {
+    .topic-badge {
       display: inline-block;
+      background: #dbeafe;
+      color: #1e3a6b;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.2rem 0.9rem;
+      border-radius: 30px;
+      letter-spacing: 0.3px;
+      margin-right: 0.5rem;
     }
 
-    /* Hidden iframe for VCF opening */
-    .hidden-iframe {
-      display: none;
-      width: 0;
-      height: 0;
+    hr {
       border: none;
+      height: 2px;
+      background: linear-gradient(to right, #dbeafe, transparent);
+      margin: 2.5rem 0 0.5rem 0;
     }
 
-    @media (max-width: 480px) {
-      .card {
-        padding: 34px 24px 30px;
-      }
-      .name-title h1 {
-        font-size: 32px;
-      }
+    /* definitions list */
+    .def-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+      gap: 0.8rem 1.5rem;
+      background: #fafcff;
+      padding: 1.5rem 2rem;
+      border-radius: 28px;
+      border: 1px solid #e2ecfa;
+    }
+    .def-grid span {
+      font-weight: 600;
+      color: #0b2b5c;
+    }
+
+    .fa-li {
+      margin-right: 8px;
+      color: #2563eb;
+    }
+
+    /* responsive */
+    @media (max-width: 700px) {
+      body { padding: 1rem 0.5rem; }
+      .container { padding: 1.5rem 1rem; }
+      h1 { font-size: 2rem; flex-wrap: wrap; }
+      h2 { font-size: 1.6rem; }
+      .card-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="card-wrapper">
-    <div class="card" id="businessCard">
-      <div class="brand-tag">Quadrupleplay Holdings</div>
+<div class="container">
 
-      <div class="profile-row">
-        <div class="logo-badge">
-          <!-- Logo image with proper fitting -->
-          <img src="logo.png" alt="Quadrupleplay Logo" />
-        </div>
-        <div class="name-title">
-          <h1>Sthembiso <span class="highlight">Dlamini</span></h1>
-          <div class="job-position">Chief Executive Officer</div>
-        </div>
-      </div>
-
-      <div class="divider"></div>
-
-      <div class="contact-list">
-        <!-- Phone - Clickable -->
-        <a href="tel:+27665683126" class="contact-item">
-          <div class="icon-square">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.22 2.18 2 2 0 012.22 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
-            </svg>
-          </div>
-          <div class="info-text">
-            <span class="label">Mobile</span>
-            <span class="value">+27 66 568 3126</span>
-          </div>
-        </a>
-
-        <!-- Email - Clickable -->
-        <a href="mailto:Sthembiso@quadrupleplay.holdings" class="contact-item">
-          <div class="icon-square">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-          </div>
-          <div class="info-text">
-            <span class="label">Email</span>
-            <span class="value">Sthembiso@quadrupleplay.holdings</span>
-          </div>
-        </a>
-
-        <!-- Office Address - Not clickable -->
-        <div class="contact-item">
-          <div class="icon-square">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-              <circle cx="12" cy="10" r="3"/>
-            </svg>
-          </div>
-          <div class="info-text">
-            <span class="label">Office</span>
-            <span class="value">Office 7, Block C, Carpe Diem, 26 Quantum Street, Techno Park, Stellenbosch.</span>
-          </div>
-        </div>
-
-        <!-- Website - Clickable -->
-        <a href="https://www.quadrupleplay.co.za" target="_blank" rel="noopener noreferrer" class="contact-item">
-          <div class="icon-square">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="2" y1="12" x2="22" y2="12"/>
-              <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-            </svg>
-          </div>
-          <div class="info-text">
-            <span class="label">Website</span>
-            <span class="value">www.quadrupleplay.co.za</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="action-buttons">
-        <button class="btn btn-primary" id="saveContactBtn" onclick="saveToContacts()">
-          <span class="btn-icon">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-              <path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/>
-              <rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>
-              <path d="M12 11v6M9 14h6"/>
-            </svg>
-          </span>
-          <span class="btn-text">Save to Contacts</span>
-          <div class="spinner"></div>
-        </button>
-        <button class="btn btn-secondary" id="saveImageBtn" onclick="saveAsImage()">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          Save Image
-        </button>
-      </div>
-
-      <div class="footer-note">Tap · Connect</div>
-    </div>
+  <!-- header -->
+  <h1>
+    <i class="fas fa-globe" style="background: linear-gradient(145deg,#0b2b5c,#2563eb); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
+    WEB TECH 511
+    <small>exam prep</small>
+  </h1>
+  <div class="subhead">
+    <i class="fas fa-graduation-cap" style="color:#2563eb; margin-right:10px;"></i>
+    Simplified notes · first-time learners · based on official scope
   </div>
 
-  <!-- Hidden iframe for auto-opening VCF -->
-  <iframe id="vcfFrame" class="hidden-iframe"></iframe>
+  <!-- ========== TOPIC 1 ========== -->
+  <h2><i class="fas fa-network-wired"></i> 1. Internet &amp; WWW</h2>
+  <div class="card-grid">
+    <div class="card"><strong>🌐 Internet</strong> — global network of computers.<br><span class="inline-code">Roads = Internet</span> · cars = data · destinations = websites.<br><strong>Services:</strong> email, banking, social media, streaming, gaming, cloud.</div>
+    <div class="card"><strong>📄 WWW</strong> — collection of web pages &amp; sites running on the Internet.<br><span class="inline-code">Internet = network</span> · <span class="inline-code">WWW = websites</span></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <tr><th>Internet</th><th>WWW</th></tr>
+      <tr><td>physical network</td><td>collection of websites</td></tr>
+      <tr><td>infrastructure</td><td>service running on Internet</td></tr>
+      <tr><td>exists without websites</td><td>depends on Internet</td></tr>
+    </table>
+  </div>
+  <div class="highlight-box">
+    <strong>📌 How a web page loads:</strong> URL → DNS finds IP → browser requests → server returns HTML/CSS/JS/images → browser displays.
+  </div>
 
-  <!-- Hidden high-res canvas for rendering -->
-  <div id="renderContainer" style="position: absolute; left: -9999px; top: 0; width: 1200px; visibility: hidden;"></div>
+  <!-- ========== TOPIC 2 ========== -->
+  <h2><i class="fas fa-lock"></i> 2. HTTP &amp; HTTPS</h2>
+  <div class="card-grid">
+    <div class="card"><strong>HTTP</strong> = HyperText Transfer Protocol · transfers web pages. <span class="inline-code">http://example.com</span></div>
+    <div class="card"><strong>HTTPS</strong> = HyperText Transfer Protocol <strong>Secure</strong> · encrypted. <span class="inline-code">https://example.com</span></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <tr><th>HTTP</th><th>HTTPS</th></tr>
+      <tr><td>not secure</td><td>secure</td></tr>
+      <tr><td>data visible</td><td>data encrypted</td></tr>
+      <tr><td>no SSL</td><td>uses SSL/TLS certificate</td></tr>
+      <tr><td>less trusted</td><td>more trusted</td></tr>
+    </table>
+  </div>
+  <div class="highlight-box"><strong>✅ For online banking → always use HTTPS.</strong> Protects passwords, banking details, prevents hackers.</div>
 
-  <div class="toast" id="liveToast"></div>
+  <!-- ========== TOPIC 3 ========== -->
+  <h2><i class="fas fa-universal-access"></i> 3. Accessibility</h2>
+  <p>Make websites usable for <strong>everyone</strong> — blind, deaf, colour-blind, elderly.</p>
+  <div class="card-grid">
+    <div class="card"><span class="topic-badge">alt text</span> <code>&lt;img src="dog.jpg" alt="Brown dog running"&gt;</code> · screen readers describe images.</div>
+    <div class="card"><span class="topic-badge">headings</span> use <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> in order.</div>
+    <div class="card"><span class="topic-badge">contrast</span> black on white (good) · yellow on white (bad).</div>
+    <div class="card"><span class="topic-badge">semantic HTML</span> <code>&lt;header&gt; &lt;nav&gt; &lt;main&gt; &lt;footer&gt;</code> improves understanding.</div>
+  </div>
 
-  <script>
-    (function() {
-      const toast = document.getElementById('liveToast');
-      const saveContactBtn = document.getElementById('saveContactBtn');
-      const saveImageBtn = document.getElementById('saveImageBtn');
-      const cardElement = document.getElementById('businessCard');
-      const renderContainer = document.getElementById('renderContainer');
-      const vcfFrame = document.getElementById('vcfFrame');
+  <!-- ========== TOPIC 4 ========== -->
+  <h2><i class="fas fa-mobile-alt"></i> 4. Responsive Design</h2>
+  <div class="card-grid">
+    <div class="card">Adapts to phones, tablets, laptops, desktops.<br><span class="inline-code">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></div>
+    <div class="card">✅ better UX · mobile friendly · faster navigation</div>
+  </div>
 
-      function showToast(text) {
-        if (!toast) return;
-        toast.textContent = text;
-        toast.classList.add('show');
-        clearTimeout(window.toastTimer);
-        window.toastTimer = setTimeout(() => {
-          toast.classList.remove('show');
-        }, 3000);
-      }
+  <!-- ========== TOPIC 5 ========== -->
+  <h2><i class="fas fa-code"></i> 5. HTML Document Structure</h2>
+  <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Website&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- content --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+  <div class="card-grid">
+    <div class="card"><code>&lt;!DOCTYPE html&gt;</code> → HTML5</div>
+    <div class="card"><code>&lt;html&gt;</code> → root</div>
+    <div class="card"><code>&lt;head&gt;</code> → metadata</div>
+    <div class="card"><code>&lt;body&gt;</code> → visible content</div>
+  </div>
 
-      // Generate vCard data
-      function generateVCardData() {
-        return [
-          'BEGIN:VCARD',
-          'VERSION:3.0',
-          'FN:Sthembiso Dlamini',
-          'N:Dlamini;Sthembiso;;;',
-          'ORG:Quadrupleplay Holdings',
-          'TITLE:Chief Executive Officer',
-          'TEL;TYPE=CELL:+27 66 568 3126',
-          'EMAIL;TYPE=WORK:Sthembiso@quadrupleplay.holdings',
-          'ADR;TYPE=WORK:;;Office 7, Block C, Carpe Diem;26 Quantum Street;Techno Park;Stellenbosch;;South Africa',
-          'URL:https://www.quadrupleplay.co.za',
-          'NOTE:Quadrupleplay Holdings - CEO',
-          'END:VCARD'
-        ].join('\n');
-      }
+  <!-- ========== TOPIC 6 ========== -->
+  <h2><i class="fas fa-tags"></i> 6. Meta Tags</h2>
+  <div class="code-block">&lt;meta charset="UTF-8"&gt;
+&lt;meta name="description" content="Computer Science Notes"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</div>
 
-      // Function to save contact and auto-open it
-      function saveToContacts() {
-        saveContactBtn.classList.add('loading');
-        saveContactBtn.disabled = true;
-        
-        const vcardData = generateVCardData();
-        const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        
-        // Method 1: Try to open directly using iframe (works on some mobile browsers)
-        try {
-          vcfFrame.src = url;
-          
-          // Check if iframe loaded successfully
-          setTimeout(() => {
-            try {
-              // If iframe didn't trigger the contact app, try other methods
-              const iframeDoc = vcfFrame.contentDocument || vcfFrame.contentWindow.document;
-              if (!iframeDoc || iframeDoc.body.innerHTML === '') {
-                // Iframe method didn't work, try direct navigation
-                directOpenVCard(url, blob, vcardData);
-              }
-            } catch (e) {
-              // Cross-origin error means iframe is working
-              showToast('✓ Opening contact...');
-              setTimeout(() => {
-                saveContactBtn.classList.remove('loading');
-                saveContactBtn.disabled = false;
-              }, 500);
-            }
-          }, 300);
-          
-        } catch (e) {
-          // Iframe method failed, try other methods
-          directOpenVCard(url, blob, vcardData);
-        }
-        
-        // Clean up URL after delay
-        setTimeout(() => {
-          URL.revokeObjectURL(url);
-        }, 5000);
-      }
+  <!-- ========== TOPIC 7 ========== -->
+  <h2><i class="fas fa-heading"></i> 7. Headings, Paragraphs &amp; Text</h2>
+  <div class="card-grid">
+    <div class="card"><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> · <code>&lt;p&gt;</code> paragraph · <code>&lt;br&gt;</code> line break</div>
+    <div class="card"><strong>bold:</strong> <code>&lt;strong&gt;</code> · <strong>italic:</strong> <code>&lt;em&gt;</code></div>
+  </div>
 
-      // Direct methods to open VCard
-      function directOpenVCard(url, blob, vcardData) {
-        // Method 2: Try window.location (works on iOS Safari)
-        if (isIOS()) {
-          window.location.href = url;
-          showToast('✓ Opening contact...');
-          setTimeout(() => {
-            saveContactBtn.classList.remove('loading');
-            saveContactBtn.disabled = false;
-          }, 500);
-          return;
-        }
-        
-        // Method 3: Try using data URI with mailto/vcard
-        try {
-          const reader = new FileReader();
-          reader.onload = function(e) {
-            const dataUrl = e.target.result;
-            
-            // Create anchor with download attribute
-            const a = document.createElement('a');
-            a.href = dataUrl;
-            a.download = 'Sthembiso-Dlamini.vcf';
-            a.style.display = 'none';
-            document.body.appendChild(a);
-            
-            // Trigger click
-            a.click();
-            
-            // Try to open immediately after download
-            setTimeout(() => {
-              // Method 4: Try opening with intent on Android
-              if (isAndroid()) {
-                window.location.href = 'intent://' + encodeURIComponent(dataUrl) + '#Intent;type=text/x-vcard;end';
-              }
-              
-              document.body.removeChild(a);
-              showToast('✓ Contact saved & opening...');
-              
-              saveContactBtn.classList.remove('loading');
-              saveContactBtn.disabled = false;
-            }, 200);
-          };
-          reader.readAsDataURL(blob);
-          
-        } catch (e) {
-          // Final fallback: simple download
-          downloadVCard(vcardData);
-          showToast('✓ Contact downloaded');
-          
-          saveContactBtn.classList.remove('loading');
-          saveContactBtn.disabled = false;
-        }
-      }
+  <!-- ========== TOPIC 8 ========== -->
+  <h2><i class="fas fa-link"></i> 8. Hyperlinks</h2>
+  <div class="code-block">&lt;a href="https://google.com"&gt;Google&lt;/a&gt;          &lt;!-- external --&gt;
+&lt;a href="about.html"&gt;About&lt;/a&gt;             &lt;!-- internal --&gt;
+&lt;a href="mailto:test@gmail.com"&gt;Email Us&lt;/a&gt;</div>
 
-      // Simple download fallback
-      function downloadVCard(vcardData) {
-        const blob = new Blob([vcardData], { type: 'text/vcard;charset=utf-8' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'Sthembiso-Dlamini.vcf';
-        document.body.appendChild(a);
-        a.click();
-        
-        setTimeout(() => {
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        }, 1000);
-      }
+  <!-- ========== TOPIC 9 ========== -->
+  <h2><i class="fas fa-image"></i> 9. Images</h2>
+  <div class="code-block">&lt;img src="image.jpg" alt="Description"&gt;</div>
+  <div class="table-wrap">
+    <table><tr><th>Format</th><th>Use</th></tr><tr><td>JPG</td><td>photos</td></tr><tr><td>PNG</td><td>transparent images</td></tr><tr><td>GIF</td><td>animations</td></tr><tr><td>SVG</td><td>logos</td></tr></table>
+  </div>
 
-      // Platform detection helpers
-      function isIOS() {
-        return /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-               (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-      }
+  <!-- ========== TOPIC 10 ========== -->
+  <h2><i class="fas fa-bars"></i> 10. Navigation Menus</h2>
+  <div class="code-block">&lt;nav&gt;
+  &lt;a href="home.html"&gt;Home&lt;/a&gt;
+  &lt;a href="about.html"&gt;About&lt;/a&gt;
+  &lt;a href="contact.html"&gt;Contact&lt;/a&gt;
+&lt;/nav&gt;</div>
 
-      function isAndroid() {
-        return /Android/.test(navigator.userAgent);
-      }
+  <!-- ========== TOPIC 11 ========== -->
+  <h2><i class="fas fa-tags"></i> 11. Semantic HTML</h2>
+  <div class="card-grid">
+    <div class="card"><code>&lt;header&gt;</code> top · <code>&lt;nav&gt;</code> navigation</div>
+    <div class="card"><code>&lt;main&gt;</code> main content · <code>&lt;section&gt;</code> section</div>
+    <div class="card"><code>&lt;article&gt;</code> independent · <code>&lt;footer&gt;</code> bottom</div>
+  </div>
 
-      // Function to save business card as high-resolution image
-      async function saveAsImage() {
-        saveImageBtn.classList.add('loading');
-        saveImageBtn.disabled = true;
-        showToast('Generating high-res image...');
-        
-        try {
-          const clone = cardElement.cloneNode(true);
-          clone.style.width = '1200px';
-          clone.style.maxWidth = '1200px';
-          clone.style.transform = 'scale(1)';
-          clone.style.padding = '132px 114px 114px';
-          clone.style.borderRadius = '96px';
-          
-          const h1 = clone.querySelector('h1');
-          if (h1) h1.style.fontSize = '114px';
-          
-          const jobPos = clone.querySelector('.job-position');
-          if (jobPos) jobPos.style.fontSize = '39px';
-          
-          const labels = clone.querySelectorAll('.label');
-          labels.forEach(label => {
-            label.style.fontSize = '25px';
-            label.style.letterSpacing = '0.2em';
-          });
-          
-          const values = clone.querySelectorAll('.value');
-          values.forEach(value => {
-            value.style.fontSize = '42px';
-          });
-          
-          const brandTag = clone.querySelector('.brand-tag');
-          if (brandTag) {
-            brandTag.style.fontSize = '27px';
-            brandTag.style.letterSpacing = '0.3em';
-          }
-          
-          const footerNote = clone.querySelector('.footer-note');
-          if (footerNote) {
-            footerNote.style.fontSize = '25px';
-          }
-          
-          const iconSquares = clone.querySelectorAll('.icon-square');
-          iconSquares.forEach(icon => {
-            icon.style.width = '114px';
-            icon.style.height = '114px';
-            icon.style.borderRadius = '30px';
-          });
-          
-          const logoBadge = clone.querySelector('.logo-badge');
-          if (logoBadge) {
-            logoBadge.style.width = '192px';
-            logoBadge.style.height = '192px';
-            logoBadge.style.borderRadius = '60px';
-          }
-          
-          const btns = clone.querySelectorAll('.btn');
-          btns.forEach(btn => {
-            btn.style.padding = '42px 30px';
-            btn.style.fontSize = '33px';
-            btn.style.borderRadius = '42px';
-          });
-          
-          const divider = clone.querySelector('.divider');
-          if (divider) {
-            divider.style.margin = '84px 0 72px';
-          }
-          
-          const contactItems = clone.querySelectorAll('.contact-item');
-          contactItems.forEach(item => {
-            item.style.gap = '48px';
-            item.style.padding = '24px 0';
-          });
-          
-          const contactList = clone.querySelector('.contact-list');
-          if (contactList) {
-            contactList.style.gap = '54px';
-            contactList.style.marginBottom = '90px';
-          }
-          
-          const profileRow = clone.querySelector('.profile-row');
-          if (profileRow) {
-            profileRow.style.gap = '54px';
-            profileRow.style.marginBottom = '78px';
-          }
-          
-          const actionButtons = clone.querySelector('.action-buttons');
-          if (actionButtons) {
-            actionButtons.style.gap = '36px';
-            actionButtons.style.marginTop = '24px';
-          }
-          
-          renderContainer.innerHTML = '';
-          renderContainer.appendChild(clone);
-          renderContainer.style.visibility = 'visible';
-          
-          await new Promise(resolve => setTimeout(resolve, 500));
-          
-          const canvas = await html2canvas(clone, {
-            scale: 2,
-            useCORS: true,
-            allowTaint: true,
-            backgroundColor: '#ffffff',
-            logging: false,
-            width: 1200,
-            windowWidth: 1200,
-            onclone: function(clonedDoc) {
-              const allElements = clonedDoc.querySelectorAll('*');
-              allElements.forEach(el => {
-                el.style.webkitFontSmoothing = 'antialiased';
-                el.style.mozOsxFontSmoothing = 'grayscale';
-              });
-            }
-          });
-          
-          renderContainer.style.visibility = 'hidden';
-          renderContainer.innerHTML = '';
-          
-          canvas.toBlob(async (blob) => {
-            if (!blob) {
-              throw new Error('Failed to create image blob');
-            }
-            
-            const timestamp = new Date().toISOString().slice(0, 10);
-            const filename = `Sthembiso-Dlamini-Business-Card-${timestamp}.png`;
-            const file = new File([blob], filename, { type: 'image/png' });
-            
-            if (navigator.canShare && navigator.canShare({ files: [file] })) {
-              try {
-                await navigator.share({
-                  files: [file],
-                  title: 'Sthembiso Dlamini - Business Card',
-                  text: 'Quadrupleplay Holdings CEO - Business Card'
-                });
-                showToast('✓ High-res image saved to gallery');
-              } catch (shareError) {
-                if (shareError.name !== 'AbortError') {
-                  downloadHighResImage(blob, filename);
-                } else {
-                  showToast('Save cancelled');
-                }
-              }
-            } else {
-              downloadHighResImage(blob, filename);
-            }
-            
-            saveImageBtn.classList.remove('loading');
-            saveImageBtn.disabled = false;
-            
-          }, 'image/png', 1.0);
-          
-        } catch (error) {
-          console.error('Error capturing high-res image:', error);
-          showToast('⚠️ Trying alternative method...');
-          
-          try {
-            const canvas = await html2canvas(cardElement, {
-              scale: 4,
-              useCORS: true,
-              allowTaint: true,
-              backgroundColor: '#ffffff',
-              logging: false
-            });
-            
-            canvas.toBlob(async (blob) => {
-              const timestamp = new Date().toISOString().slice(0, 10);
-              const filename = `Sthembiso-Dlamini-${timestamp}.png`;
-              downloadHighResImage(blob, filename);
-              showToast('✓ Business card downloaded');
-            }, 'image/png', 1.0);
-            
-          } catch (fallbackError) {
-            console.error('Fallback also failed:', fallbackError);
-            showToast('⚠️ Could not save image');
-          }
-          
-          saveImageBtn.classList.remove('loading');
-          saveImageBtn.disabled = false;
-        }
-      }
+  <!-- ========== TOPIC 12–20 ========== -->
+  <h2><i class="fas fa-paint-brush"></i> 12–20. CSS Basics · Selectors · Colours · Fonts · Borders · Spacing · Box Model · Flexbox · Grid</h2>
+  <div class="card-grid">
+    <div class="card"><strong>CSS syntax:</strong> <code>selector { property: value; }</code><br><span class="inline-code">p { color: blue; }</span></div>
+    <div class="card"><strong>Selectors:</strong> element <code>p</code> · class <code>.note</code> · id <code>#title</code></div>
+    <div class="card"><strong>Colours:</strong> named <code>red</code> · hex <code>#FF0000</code> · background <code>background-color: yellow;</code></div>
+    <div class="card"><strong>Fonts:</strong> <code>font-family: Arial;</code> · <code>font-size:20px;</code> · <code>font-style:italic;</code></div>
+    <div class="card"><strong>Borders:</strong> <code>border:2px solid black;</code></div>
+    <div class="card"><strong>Spacing:</strong> padding (inside) · margin (outside)</div>
+    <div class="card"><strong>Box Model:</strong> <span class="inline-code">Margin → Border → Padding → Content</span></div>
+    <div class="card"><strong>Flexbox:</strong> <code>display:flex;</code> · <code>justify-content:center;</code> · <code>align-items:center;</code></div>
+    <div class="card"><strong>Grid:</strong> <code>display:grid; grid-template-columns:1fr 1fr;</code> · 2D layout</div>
+  </div>
+  <div class="highlight-box"><strong>Flexbox</strong> = one dimension · <strong>Grid</strong> = two dimensions (rows &amp; columns)</div>
 
-      function downloadHighResImage(blob, filename) {
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = filename;
-        document.body.appendChild(a);
-        a.click();
-        
-        setTimeout(() => {
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        }, 100);
-        
-        showToast('✓ Crystal clear business card saved');
-      }
+  <!-- ========== TOPIC 21 ========== -->
+  <h2><i class="fas fa-table"></i> 21. HTML Tables</h2>
+  <div class="code-block">&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;John&lt;/td&gt;&lt;td&gt;20&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</div>
+  <div class="card-grid">
+    <div class="card"><code>&lt;table&gt;</code> · <code>&lt;tr&gt;</code> row · <code>&lt;th&gt;</code> heading · <code>&lt;td&gt;</code> data · <code>&lt;caption&gt;</code> title</div>
+    <div class="card">CSS hover: <code>tr:hover { background-color:yellow; }</code></div>
+  </div>
 
-      // Expose functions to global scope for onclick
-      window.saveToContacts = saveToContacts;
-      window.saveAsImage = saveAsImage;
+  <!-- ========== TOPIC 22–28 ========== -->
+  <h2><i class="fas fa-clipboard-list"></i> 22–28. Forms · Input types · Radio · Checkbox · Dropdown · Textarea · Validation</h2>
+  <div class="card-grid">
+    <div class="card"><strong>Form:</strong> <code>&lt;form action="save.php" method="POST"&gt;</code></div>
+    <div class="card"><strong>Input types:</strong> text, email, number, date, password</div>
+    <div class="card"><strong>Radio:</strong> <code>&lt;input type="radio" name="gender"&gt;</code> (one choice)</div>
+    <div class="card"><strong>Checkbox:</strong> <code>&lt;input type="checkbox"&gt;</code> (multiple)</div>
+    <div class="card"><strong>Dropdown:</strong> <code>&lt;select&gt;&lt;option&gt;SA&lt;/option&gt;&lt;/select&gt;</code></div>
+    <div class="card"><strong>Textarea:</strong> <code>&lt;textarea&gt;&lt;/textarea&gt;</code> for large text</div>
+    <div class="card"><strong>Validation:</strong> <code>required</code> · <code>type="email"</code> · <code>min="1" max="100"</code></div>
+  </div>
 
-    })();
-  </script>
+  <!-- ========== TOPIC 29–34 ========== -->
+  <h2><i class="fab fa-js"></i> 29–34. JavaScript Variables · Functions · prompt/alert · Decisions · Validation · Error Handling</h2>
+  <div class="code-block">// variable
+let name = "John";
+let age = 20;
+let passed = true;
+
+// function
+function greet() { alert("Hello"); }
+greet();
+
+// prompt & alert
+let name = prompt("Enter your name");
+alert("Welcome");
+
+// decision
+if (age >= 18) { alert("Adult"); }
+else if (age >= 13) { alert("Teen"); }
+else { alert("Minor"); }
+
+// validation
+if (age == "") { alert("Age required"); }
+if (isNaN(age)) { alert("Numbers only"); }</div>
+
+  <!-- ========== TOPIC 35–37 ========== -->
+  <h2><i class="fas fa-code"></i> 35–37. jQuery · Events · Methods</h2>
+  <div class="card-grid">
+    <div class="card"><strong>jQuery</strong> = JavaScript library · easier coding.<br><span class="inline-code">$("p")</span> selects all paragraphs · <span class="inline-code">$("#title")</span> · <span class="inline-code">$(".box")</span></div>
+    <div class="card"><strong>Click:</strong> <code>$("#btn").click(function(){ alert("Clicked"); });</code></div>
+    <div class="card"><strong>Methods:</strong> <code>hide()</code> · <code>show()</code> · <code>fadeIn()</code> · <code>text("Hello")</code> · <code>css("color","red")</code></div>
+  </div>
+
+  <!-- ========== TOPIC 38 ========== -->
+  <h2><i class="fas fa-layer-group"></i> 38. Integration (HTML + CSS + JS + jQuery)</h2>
+  <div class="highlight-box">
+    <strong>HTML</strong> = structure · <strong>CSS</strong> = appearance · <strong>JavaScript</strong> = functionality · <strong>jQuery</strong> = easier JavaScript
+  </div>
+
+  <!-- ========== DEFINITIONS ========== -->
+  <h2 style="margin-top:3rem;"><i class="fas fa-list-ul"></i> Most Important Exam Definitions</h2>
+  <div class="def-grid">
+    <div><span>Internet</span> → global network of computers</div>
+    <div><span>WWW</span> → collection of websites on the Internet</div>
+    <div><span>HTTP</span> → HyperText Transfer Protocol</div>
+    <div><span>HTTPS</span> → secure version of HTTP</div>
+    <div><span>HTML</span> → HyperText Markup Language</div>
+    <div><span>CSS</span> → Cascading Style Sheets</div>
+    <div><span>JavaScript</span> → web interactivity</div>
+    <div><span>jQuery</span> → JavaScript library</div>
+    <div><span>Responsive Design</span> → adapts to screen sizes</div>
+    <div><span>Accessibility</span> → design for all users</div>
+    <div><span>Semantic HTML</span> → tags that describe meaning</div>
+    <div><span>Form Validation</span> → check input before processing</div>
+    <div><span>Flexbox</span> → 1D layout</div>
+    <div><span>CSS Grid</span> → 2D layout</div>
+    <div><span>Box Model</span> → Content + Padding + Border + Margin</div>
+  </div>
+
+  <hr>
+  <p style="text-align:center; color:#64748b; margin-top:1.5rem;">
+    <i class="fas fa-check-circle" style="color:#2563eb;"></i> WEB TECH 511 · simplified for first-time learners · good luck!
+  </p>
+
+</div> <!-- container -->
 </body>
 </html>
