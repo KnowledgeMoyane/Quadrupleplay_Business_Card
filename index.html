@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programming 500 · Python notes</title>
-  <!-- Font Awesome for icons -->
+  <title>WEB TECH 511 · exam notes</title>
+  <!-- Font Awesome (optional but clean) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
+    /* ----- reset & base ----- */
     * {
       margin: 0;
       padding: 0;
@@ -14,7 +15,7 @@
     }
 
     body {
-      background: #f4f7fc;
+      background: #f8faff;
       font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
       padding: 2rem 1.5rem;
       color: #1e293b;
@@ -25,16 +26,17 @@
       max-width: 1200px;
       margin: 0 auto;
       background: white;
-      padding: 2.2rem 2.8rem;
-      border-radius: 36px;
-      box-shadow: 0 20px 40px -12px rgba(0, 20, 50, 0.15);
+      padding: 2rem 2.5rem;
+      border-radius: 32px;
+      box-shadow: 0 20px 40px -12px rgba(0,20,50,0.15);
     }
 
+    /* ----- headers & titles ----- */
     h1 {
-      font-size: 2.8rem;
+      font-size: 2.6rem;
       font-weight: 700;
       letter-spacing: -0.02em;
-      background: linear-gradient(145deg, #0b3b5c, #1f6e8c);
+      background: linear-gradient(145deg, #0b2b5c, #1e4a7a);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -42,32 +44,27 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      flex-wrap: wrap;
     }
     h1 small {
       font-size: 1rem;
       font-weight: 400;
-      background: #dfeaf5;
-      padding: 0.2rem 1.2rem;
+      background: #e6edf8;
+      padding: 0.2rem 1rem;
       border-radius: 40px;
-      -webkit-text-fill-color: #1a4a6a;
-      color: #1a4a6a;
-      margin-left: 6px;
+      -webkit-text-fill-color: #1e3a6b;
+      color: #1e3a6b;
+      margin-left: 10px;
     }
 
     .subhead {
       font-size: 1.1rem;
-      color: #2c3e5a;
-      border-left: 6px solid #2a7faa;
-      padding-left: 1.5rem;
+      color: #475569;
+      border-left: 5px solid #3b82f6;
+      padding-left: 1.2rem;
       margin: 0.5rem 0 2rem 0;
-      background: #eef5fa;
-      border-radius: 0 24px 24px 0;
-      padding: 0.8rem 1.8rem;
-    }
-    .subhead i {
-      color: #1f6e8c;
-      margin-right: 10px;
+      background: #f1f5fe;
+      border-radius: 0 20px 20px 0;
+      padding: 0.8rem 1.5rem;
     }
 
     h2 {
@@ -76,27 +73,35 @@
       margin-top: 2.8rem;
       margin-bottom: 1rem;
       padding-bottom: 0.4rem;
-      border-bottom: 4px solid #d4e2f0;
-      color: #0b3b5c;
+      border-bottom: 4px solid #dbeafe;
+      color: #0b2b5c;
       display: flex;
       align-items: center;
       gap: 12px;
     }
     h2 i {
       font-size: 1.8rem;
-      color: #1f6e8c;
+      color: #2563eb;
     }
 
     h3 {
       font-size: 1.4rem;
       font-weight: 600;
       margin: 1.8rem 0 0.6rem 0;
-      color: #1a4a6a;
+      color: #1e3a6b;
     }
 
+    h4 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.2rem 0;
+      color: #2d4a7a;
+    }
+
+    /* ----- cards & boxes ----- */
     .card-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 1.5rem;
       margin: 1.5rem 0 1rem 0;
     }
@@ -104,34 +109,35 @@
     .card {
       background: #ffffff;
       border-radius: 20px;
-      padding: 1.4rem 1.6rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 2px 6px rgba(0, 20, 40, 0.05);
-      border: 1px solid #e8eef5;
-      transition: 0.15s;
+      padding: 1.5rem 1.6rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03), 0 2px 6px rgba(0,20,40,0.05);
+      border: 1px solid #eef2f8;
+      transition: 0.2s;
     }
     .card:hover {
-      border-color: #b6cfe0;
-      box-shadow: 0 12px 24px -8px rgba(20, 60, 90, 0.08);
+      border-color: #b9d0f0;
+      box-shadow: 0 12px 24px -8px rgba(30, 64, 120, 0.08);
     }
+
     .card code, .inline-code {
-      background: #e7eef6;
-      padding: 0.15rem 0.6rem;
+      background: #eef4fc;
+      padding: 0.2rem 0.6rem;
       border-radius: 8px;
       font-family: 'JetBrains Mono', 'Fira Code', monospace;
       font-size: 0.9rem;
-      color: #1a4a6a;
+      color: #1e3a6b;
     }
 
     .code-block {
-      background: #0f1a26;
+      background: #0f1a2e;
       color: #e2e8f0;
-      padding: 1.2rem 1.8rem;
-      border-radius: 18px;
+      padding: 1rem 1.5rem;
+      border-radius: 16px;
       overflow-x: auto;
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.9rem;
-      margin: 1rem 0 1.4rem 0;
-      border-left: 6px solid #2a7faa;
+      margin: 0.8rem 0 1.2rem 0;
+      border-left: 4px solid #3b82f6;
       white-space: pre-wrap;
       word-break: break-word;
     }
@@ -145,7 +151,7 @@
       overflow-x: auto;
       margin: 1.2rem 0;
       border-radius: 16px;
-      border: 1px solid #dce5ef;
+      border: 1px solid #e2e8f0;
     }
     table {
       width: 100%;
@@ -153,64 +159,72 @@
       font-size: 0.95rem;
     }
     th {
-      background: #e6eff7;
+      background: #eef4fc;
       text-align: left;
       padding: 0.8rem 1rem;
       font-weight: 600;
-      color: #0b3b5c;
+      color: #0b2b5c;
     }
     td {
       padding: 0.7rem 1rem;
-      border-top: 1px solid #e2eaf2;
+      border-top: 1px solid #e9edf4;
     }
     tr:hover td {
-      background: #f6faff;
+      background: #f8fbff;
     }
 
     .highlight-box {
-      background: #e9f2fa;
-      border-radius: 24px;
+      background: #f0f7ff;
+      border-radius: 20px;
       padding: 1.2rem 2rem;
       margin: 1.5rem 0;
-      border-left: 8px solid #1f6e8c;
+      border-left: 8px solid #2563eb;
     }
 
-    .def-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 0.8rem 1.8rem;
-      background: #f7fafd;
-      padding: 1.5rem 2rem;
-      border-radius: 28px;
-      border: 1px solid #dce8f2;
-    }
-    .def-grid span {
-      font-weight: 600;
-      color: #0b3b5c;
-    }
-
-    hr {
-      border: none;
-      height: 2px;
-      background: linear-gradient(to right, #d4e2f0, transparent);
-      margin: 2.5rem 0 0.5rem 0;
-    }
-    .badge-python {
-      background: #d1e2ef;
-      color: #0b3b5c;
-      font-size: 0.7rem;
+    .topic-badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e3a6b;
+      font-size: 0.75rem;
       font-weight: 600;
       padding: 0.2rem 0.9rem;
       border-radius: 30px;
       letter-spacing: 0.3px;
       margin-right: 0.5rem;
-      display: inline-block;
     }
 
+    hr {
+      border: none;
+      height: 2px;
+      background: linear-gradient(to right, #dbeafe, transparent);
+      margin: 2.5rem 0 0.5rem 0;
+    }
+
+    /* definitions list */
+    .def-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
+      gap: 0.8rem 1.5rem;
+      background: #fafcff;
+      padding: 1.5rem 2rem;
+      border-radius: 28px;
+      border: 1px solid #e2ecfa;
+    }
+    .def-grid span {
+      font-weight: 600;
+      color: #0b2b5c;
+    }
+
+    .fa-li {
+      margin-right: 8px;
+      color: #2563eb;
+    }
+
+    /* responsive */
     @media (max-width: 700px) {
-      body { padding: 0.8rem 0.3rem; }
+      body { padding: 1rem 0.5rem; }
       .container { padding: 1.5rem 1rem; }
-      h1 { font-size: 2rem; }
+      h1 { font-size: 2rem; flex-wrap: wrap; }
       h2 { font-size: 1.6rem; }
       .card-grid { grid-template-columns: 1fr; }
     }
@@ -221,184 +235,226 @@
 
   <!-- header -->
   <h1>
-    <i class="fab fa-python" style="background: linear-gradient(145deg,#0b3b5c,#2a7faa); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
-    Programming 500
-    <small>Python · exam prep</small>
+    <i class="fas fa-globe" style="background: linear-gradient(145deg,#0b2b5c,#2563eb); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
+    WEB TECH 511
+    <small>exam prep</small>
   </h1>
   <div class="subhead">
-    <i class="fas fa-book-open"></i> Beginner-friendly · based on exam scope · decision structures · loops · lists · dictionaries
+    <i class="fas fa-graduation-cap" style="color:#2563eb; margin-right:10px;"></i>
+    Simplified notes · first-time learners · based on official scope
   </div>
 
-  <!-- ====== 1. BOOLEAN EXPRESSIONS ====== -->
-  <h2><i class="fas fa-check-circle"></i> 1. Boolean Expressions</h2>
-  <p>Produces only <strong>True</strong> or <strong>False</strong>. Used for decisions.</p>
-  <div class="code-block">5 > 3      # True
-10 < 4     # False
-8 == 8     # True
-
-age = 20
-if age >= 18:      # condition is a Boolean expression
-    print("You may vote")</div>
+  <!-- ========== TOPIC 1 ========== -->
+  <h2><i class="fas fa-network-wired"></i> 1. Internet &amp; WWW</h2>
   <div class="card-grid">
-    <div class="card"><span class="badge-python">example</span> <code>5 > 3</code> → <strong>True</strong></div>
-    <div class="card"><span class="badge-python">example</span> <code>10 < 4</code> → <strong>False</strong></div>
+    <div class="card"><strong>🌐 Internet</strong> — global network of computers.<br><span class="inline-code">Roads = Internet</span> · cars = data · destinations = websites.<br><strong>Services:</strong> email, banking, social media, streaming, gaming, cloud.</div>
+    <div class="card"><strong>📄 WWW</strong> — collection of web pages &amp; sites running on the Internet.<br><span class="inline-code">Internet = network</span> · <span class="inline-code">WWW = websites</span></div>
   </div>
-
-  <!-- ====== 2. RELATIONAL OPERATORS ====== -->
-  <h2><i class="fas fa-equals"></i> 2. Relational Operators</h2>
   <div class="table-wrap">
     <table>
-      <tr><th>Operator</th><th>Meaning</th><th>Example</th></tr>
-      <tr><td><code>==</code></td><td>equal to</td><td><code>5 == 5</code> → True</td></tr>
-      <tr><td><code>!=</code></td><td>not equal</td><td><code>5 != 3</code> → True</td></tr>
-      <tr><td><code>&gt;</code></td><td>greater than</td><td><code>20 &gt; 15</code> → True</td></tr>
-      <tr><td><code>&lt;</code></td><td>less than</td><td><code>3 &lt; 8</code> → True</td></tr>
-      <tr><td><code>&gt;=</code></td><td>≥</td><td><code>75 &gt;= 50</code> → True</td></tr>
-      <tr><td><code>&lt;=</code></td><td>≤</td><td><code>15 &lt;= 18</code> → True</td></tr>
+      <tr><th>Internet</th><th>WWW</th></tr>
+      <tr><td>physical network</td><td>collection of websites</td></tr>
+      <tr><td>infrastructure</td><td>service running on Internet</td></tr>
+      <tr><td>exists without websites</td><td>depends on Internet</td></tr>
     </table>
   </div>
-
-  <!-- ====== 3. DECISION STRUCTURES ====== -->
-  <h2><i class="fas fa-code-branch"></i> 3–6. Decision Structures: if, if-else, if-elif-else</h2>
-  <div class="code-block"># if
-age = 20
-if age >= 18:
-    print("Adult")
-
-# if-else
-mark = 45
-if mark >= 50:
-    print("Pass")
-else:
-    print("Fail")
-
-# if-elif-else
-mark = 72
-if mark >= 75:
-    print("Distinction")
-elif mark >= 50:
-    print("Pass")
-else:
-    print("Fail")</div>
   <div class="highlight-box">
-    <strong>⚠️ Common errors:</strong> missing colon (<code>:</code>) · wrong indentation · using <code>=</code> instead of <code>==</code>.
+    <strong>📌 How a web page loads:</strong> URL → DNS finds IP → browser requests → server returns HTML/CSS/JS/images → browser displays.
   </div>
 
-  <!-- ====== 7. ERROR IDENTIFICATION ====== -->
-  <h2><i class="fas fa-bug"></i> 7. Identifying Errors in Decision Structures</h2>
+  <!-- ========== TOPIC 2 ========== -->
+  <h2><i class="fas fa-lock"></i> 2. HTTP &amp; HTTPS</h2>
   <div class="card-grid">
-    <div class="card"><span class="badge-python">❌ wrong</span> <code>if age > 18</code> (missing colon)</div>
-    <div class="card"><span class="badge-python">✅ correct</span> <code>if age > 18:</code></div>
-    <div class="card"><span class="badge-python">❌ wrong</span> indentation: <code>if age > 18:\nprint("Adult")</code></div>
-    <div class="card"><span class="badge-python">✅ correct</span> indent the block</div>
-    <div class="card"><span class="badge-python">❌ wrong</span> <code>if age = 18:</code> (assignment instead of comparison)</div>
-    <div class="card"><span class="badge-python">✅ correct</span> <code>if age == 18:</code></div>
+    <div class="card"><strong>HTTP</strong> = HyperText Transfer Protocol · transfers web pages. <span class="inline-code">http://example.com</span></div>
+    <div class="card"><strong>HTTPS</strong> = HyperText Transfer Protocol <strong>Secure</strong> · encrypted. <span class="inline-code">https://example.com</span></div>
   </div>
+  <div class="table-wrap">
+    <table>
+      <tr><th>HTTP</th><th>HTTPS</th></tr>
+      <tr><td>not secure</td><td>secure</td></tr>
+      <tr><td>data visible</td><td>data encrypted</td></tr>
+      <tr><td>no SSL</td><td>uses SSL/TLS certificate</td></tr>
+      <tr><td>less trusted</td><td>more trusted</td></tr>
+    </table>
+  </div>
+  <div class="highlight-box"><strong>✅ For online banking → always use HTTPS.</strong> Protects passwords, banking details, prevents hackers.</div>
 
-  <!-- ====== 8–12. LOOPS ====== -->
-  <h2><i class="fas fa-sync-alt"></i> 8–12. Loops: for, while, output, errors</h2>
-  <div class="code-block"># for loop
-for i in range(5):
-    print(i)        # 0 1 2 3 4
-
-# while loop
-count = 1
-while count <= 5:
-    print(count)
-    count += 1      # 1 2 3 4 5
-
-# infinite loop (error) – fix: increment variable
-x = 1
-while x <= 5:
-    print(x)
-    # x += 1   ← missing → infinite loop</div>
+  <!-- ========== TOPIC 3 ========== -->
+  <h2><i class="fas fa-universal-access"></i> 3. Accessibility</h2>
+  <p>Make websites usable for <strong>everyone</strong> — blind, deaf, colour-blind, elderly.</p>
   <div class="card-grid">
-    <div class="card"><strong>for</strong> <code>range(4)</code> → 0,1,2,3</div>
-    <div class="card"><strong>while</strong> runs while condition is True</div>
-    <div class="card"><strong>common error:</strong> forgetting to update counter → infinite loop</div>
+    <div class="card"><span class="topic-badge">alt text</span> <code>&lt;img src="dog.jpg" alt="Brown dog running"&gt;</code> · screen readers describe images.</div>
+    <div class="card"><span class="topic-badge">headings</span> use <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> in order.</div>
+    <div class="card"><span class="topic-badge">contrast</span> black on white (good) · yellow on white (bad).</div>
+    <div class="card"><span class="topic-badge">semantic HTML</span> <code>&lt;header&gt; &lt;nav&gt; &lt;main&gt; &lt;footer&gt;</code> improves understanding.</div>
   </div>
 
-  <!-- ====== 13–14. LISTS ====== -->
-  <h2><i class="fas fa-list"></i> 13–14. Python Lists</h2>
-  <div class="code-block">fruits = ["Apple", "Banana", "Orange"]
-print(fruits[0])          # Apple
-print(len(fruits))        # 3
+  <!-- ========== TOPIC 4 ========== -->
+  <h2><i class="fas fa-mobile-alt"></i> 4. Responsive Design</h2>
+  <div class="card-grid">
+    <div class="card">Adapts to phones, tablets, laptops, desktops.<br><span class="inline-code">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></div>
+    <div class="card">✅ better UX · mobile friendly · faster navigation</div>
+  </div>
 
-fruits.append("Mango")    # add
-fruits.remove("Banana")   # remove
-fruits[1] = "Pear"        # change</div>
+  <!-- ========== TOPIC 5 ========== -->
+  <h2><i class="fas fa-code"></i> 5. HTML Document Structure</h2>
+  <div class="code-block">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+  &lt;title&gt;My Website&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- content --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</div>
+  <div class="card-grid">
+    <div class="card"><code>&lt;!DOCTYPE html&gt;</code> → HTML5</div>
+    <div class="card"><code>&lt;html&gt;</code> → root</div>
+    <div class="card"><code>&lt;head&gt;</code> → metadata</div>
+    <div class="card"><code>&lt;body&gt;</code> → visible content</div>
+  </div>
+
+  <!-- ========== TOPIC 6 ========== -->
+  <h2><i class="fas fa-tags"></i> 6. Meta Tags</h2>
+  <div class="code-block">&lt;meta charset="UTF-8"&gt;
+&lt;meta name="description" content="Computer Science Notes"&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</div>
+
+  <!-- ========== TOPIC 7 ========== -->
+  <h2><i class="fas fa-heading"></i> 7. Headings, Paragraphs &amp; Text</h2>
+  <div class="card-grid">
+    <div class="card"><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> · <code>&lt;p&gt;</code> paragraph · <code>&lt;br&gt;</code> line break</div>
+    <div class="card"><strong>bold:</strong> <code>&lt;strong&gt;</code> · <strong>italic:</strong> <code>&lt;em&gt;</code></div>
+  </div>
+
+  <!-- ========== TOPIC 8 ========== -->
+  <h2><i class="fas fa-link"></i> 8. Hyperlinks</h2>
+  <div class="code-block">&lt;a href="https://google.com"&gt;Google&lt;/a&gt;          &lt;!-- external --&gt;
+&lt;a href="about.html"&gt;About&lt;/a&gt;             &lt;!-- internal --&gt;
+&lt;a href="mailto:test@gmail.com"&gt;Email Us&lt;/a&gt;</div>
+
+  <!-- ========== TOPIC 9 ========== -->
+  <h2><i class="fas fa-image"></i> 9. Images</h2>
+  <div class="code-block">&lt;img src="image.jpg" alt="Description"&gt;</div>
+  <div class="table-wrap">
+    <table><tr><th>Format</th><th>Use</th></tr><tr><td>JPG</td><td>photos</td></tr><tr><td>PNG</td><td>transparent images</td></tr><tr><td>GIF</td><td>animations</td></tr><tr><td>SVG</td><td>logos</td></tr></table>
+  </div>
+
+  <!-- ========== TOPIC 10 ========== -->
+  <h2><i class="fas fa-bars"></i> 10. Navigation Menus</h2>
+  <div class="code-block">&lt;nav&gt;
+  &lt;a href="home.html"&gt;Home&lt;/a&gt;
+  &lt;a href="about.html"&gt;About&lt;/a&gt;
+  &lt;a href="contact.html"&gt;Contact&lt;/a&gt;
+&lt;/nav&gt;</div>
+
+  <!-- ========== TOPIC 11 ========== -->
+  <h2><i class="fas fa-tags"></i> 11. Semantic HTML</h2>
+  <div class="card-grid">
+    <div class="card"><code>&lt;header&gt;</code> top · <code>&lt;nav&gt;</code> navigation</div>
+    <div class="card"><code>&lt;main&gt;</code> main content · <code>&lt;section&gt;</code> section</div>
+    <div class="card"><code>&lt;article&gt;</code> independent · <code>&lt;footer&gt;</code> bottom</div>
+  </div>
+
+  <!-- ========== TOPIC 12–20 ========== -->
+  <h2><i class="fas fa-paint-brush"></i> 12–20. CSS Basics · Selectors · Colours · Fonts · Borders · Spacing · Box Model · Flexbox · Grid</h2>
+  <div class="card-grid">
+    <div class="card"><strong>CSS syntax:</strong> <code>selector { property: value; }</code><br><span class="inline-code">p { color: blue; }</span></div>
+    <div class="card"><strong>Selectors:</strong> element <code>p</code> · class <code>.note</code> · id <code>#title</code></div>
+    <div class="card"><strong>Colours:</strong> named <code>red</code> · hex <code>#FF0000</code> · background <code>background-color: yellow;</code></div>
+    <div class="card"><strong>Fonts:</strong> <code>font-family: Arial;</code> · <code>font-size:20px;</code> · <code>font-style:italic;</code></div>
+    <div class="card"><strong>Borders:</strong> <code>border:2px solid black;</code></div>
+    <div class="card"><strong>Spacing:</strong> padding (inside) · margin (outside)</div>
+    <div class="card"><strong>Box Model:</strong> <span class="inline-code">Margin → Border → Padding → Content</span></div>
+    <div class="card"><strong>Flexbox:</strong> <code>display:flex;</code> · <code>justify-content:center;</code> · <code>align-items:center;</code></div>
+    <div class="card"><strong>Grid:</strong> <code>display:grid; grid-template-columns:1fr 1fr;</code> · 2D layout</div>
+  </div>
+  <div class="highlight-box"><strong>Flexbox</strong> = one dimension · <strong>Grid</strong> = two dimensions (rows &amp; columns)</div>
+
+  <!-- ========== TOPIC 21 ========== -->
+  <h2><i class="fas fa-table"></i> 21. HTML Tables</h2>
+  <div class="code-block">&lt;table&gt;
+  &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;/tr&gt;
+  &lt;tr&gt;&lt;td&gt;John&lt;/td&gt;&lt;td&gt;20&lt;/td&gt;&lt;/tr&gt;
+&lt;/table&gt;</div>
+  <div class="card-grid">
+    <div class="card"><code>&lt;table&gt;</code> · <code>&lt;tr&gt;</code> row · <code>&lt;th&gt;</code> heading · <code>&lt;td&gt;</code> data · <code>&lt;caption&gt;</code> title</div>
+    <div class="card">CSS hover: <code>tr:hover { background-color:yellow; }</code></div>
+  </div>
+
+  <!-- ========== TOPIC 22–28 ========== -->
+  <h2><i class="fas fa-clipboard-list"></i> 22–28. Forms · Input types · Radio · Checkbox · Dropdown · Textarea · Validation</h2>
+  <div class="card-grid">
+    <div class="card"><strong>Form:</strong> <code>&lt;form action="save.php" method="POST"&gt;</code></div>
+    <div class="card"><strong>Input types:</strong> text, email, number, date, password</div>
+    <div class="card"><strong>Radio:</strong> <code>&lt;input type="radio" name="gender"&gt;</code> (one choice)</div>
+    <div class="card"><strong>Checkbox:</strong> <code>&lt;input type="checkbox"&gt;</code> (multiple)</div>
+    <div class="card"><strong>Dropdown:</strong> <code>&lt;select&gt;&lt;option&gt;SA&lt;/option&gt;&lt;/select&gt;</code></div>
+    <div class="card"><strong>Textarea:</strong> <code>&lt;textarea&gt;&lt;/textarea&gt;</code> for large text</div>
+    <div class="card"><strong>Validation:</strong> <code>required</code> · <code>type="email"</code> · <code>min="1" max="100"</code></div>
+  </div>
+
+  <!-- ========== TOPIC 29–34 ========== -->
+  <h2><i class="fab fa-js"></i> 29–34. JavaScript Variables · Functions · prompt/alert · Decisions · Validation · Error Handling</h2>
+  <div class="code-block">// variable
+let name = "John";
+let age = 20;
+let passed = true;
+
+// function
+function greet() { alert("Hello"); }
+greet();
+
+// prompt & alert
+let name = prompt("Enter your name");
+alert("Welcome");
+
+// decision
+if (age >= 18) { alert("Adult"); }
+else if (age >= 13) { alert("Teen"); }
+else { alert("Minor"); }
+
+// validation
+if (age == "") { alert("Age required"); }
+if (isNaN(age)) { alert("Numbers only"); }</div>
+
+  <!-- ========== TOPIC 35–37 ========== -->
+  <h2><i class="fas fa-code"></i> 35–37. jQuery · Events · Methods</h2>
+  <div class="card-grid">
+    <div class="card"><strong>jQuery</strong> = JavaScript library · easier coding.<br><span class="inline-code">$("p")</span> selects all paragraphs · <span class="inline-code">$("#title")</span> · <span class="inline-code">$(".box")</span></div>
+    <div class="card"><strong>Click:</strong> <code>$("#btn").click(function(){ alert("Clicked"); });</code></div>
+    <div class="card"><strong>Methods:</strong> <code>hide()</code> · <code>show()</code> · <code>fadeIn()</code> · <code>text("Hello")</code> · <code>css("color","red")</code></div>
+  </div>
+
+  <!-- ========== TOPIC 38 ========== -->
+  <h2><i class="fas fa-layer-group"></i> 38. Integration (HTML + CSS + JS + jQuery)</h2>
   <div class="highlight-box">
-    <strong>Exam tip:</strong> <code>append()</code> adds an item to the end of a list.
+    <strong>HTML</strong> = structure · <strong>CSS</strong> = appearance · <strong>JavaScript</strong> = functionality · <strong>jQuery</strong> = easier JavaScript
   </div>
 
-  <!-- ====== 15–17. DICTIONARIES ====== -->
-  <h2><i class="fas fa-book"></i> 15–17. Dictionaries · Student info</h2>
-  <div class="code-block">student = {
-    "name": "John",
-    "age": 20,
-    "course": "Computer Science"
-}
-print(student["name"])      # John
-
-student["age"] = 21         # change
-student["mark"] = 85        # add new
-del student["course"]       # remove</div>
-  <div class="card-grid">
-    <div class="card"><strong>student dict</strong> <code>{"student_number":"22104567", "name":"Sarah", "course":"IT", "mark":88}</code></div>
-    <div class="card">access: <code>student["course"]</code> → <strong>IT</strong></div>
-  </div>
-
-  <!-- ====== 18. WRITING PROGRAMS ====== -->
-  <h2><i class="fas fa-terminal"></i> 18. Writing Programs with Conditional Logic</h2>
-  <div class="code-block"># Pass / Fail
-mark = int(input("Enter mark: "))
-if mark >= 50:
-    print("Pass")
-else:
-    print("Fail")
-
-# Voting
-age = int(input("Enter age: "))
-if age >= 18:
-    print("Eligible to vote")
-else:
-    print("Too young")
-
-# Even / Odd
-number = int(input("Enter number: "))
-if number % 2 == 0:
-    print("Even")
-else:
-    print("Odd")</div>
-
-  <!-- ====== COMMON EXAM QUESTIONS ====== -->
-  <h2><i class="fas fa-question-circle"></i> Common Exam Questions</h2>
-  <div class="card-grid">
-    <div class="card"><strong>Q1:</strong> <code>x=10; if x>5: print("A")</code> → <strong>A</strong></div>
-    <div class="card"><strong>Q2:</strong> <code>x=3; if x>5: print("A") else: print("B")</code> → <strong>B</strong></div>
-    <div class="card"><strong>Q3:</strong> error: <code>if age = 18:</code> → use <code>==</code></div>
-    <div class="card"><strong>Q4:</strong> <code>for i in range(4): print(i)</code> → 0 1 2 3</div>
-    <div class="card"><strong>Q5:</strong> list of subjects → <code>subjects = ["Math","Science","English"]</code></div>
-  </div>
-
-  <!-- ====== QUICK REVISION SUMMARY ====== -->
-  <h2 style="margin-top: 3rem;"><i class="fas fa-bolt"></i> Quick Revision Summary</h2>
+  <!-- ========== DEFINITIONS ========== -->
+  <h2 style="margin-top:3rem;"><i class="fas fa-list-ul"></i> Most Important Exam Definitions</h2>
   <div class="def-grid">
-    <div><span>True / False</span> Boolean values</div>
-    <div><span>== != > < >= <=</span> relational operators</div>
-    <div><span>if / if-else / elif</span> decision structures</div>
-    <div><span>for / while</span> loops</div>
-    <div><span>[ ]</span> lists</div>
-    <div><span>{ }</span> dictionaries</div>
-    <div><span>append()</span> add to list</div>
-    <div><span>"key":"value"</span> dict pair</div>
-    <div><span>==</span> compare</div>
-    <div><span>=</span> assign</div>
+    <div><span>Internet</span> → global network of computers</div>
+    <div><span>WWW</span> → collection of websites on the Internet</div>
+    <div><span>HTTP</span> → HyperText Transfer Protocol</div>
+    <div><span>HTTPS</span> → secure version of HTTP</div>
+    <div><span>HTML</span> → HyperText Markup Language</div>
+    <div><span>CSS</span> → Cascading Style Sheets</div>
+    <div><span>JavaScript</span> → web interactivity</div>
+    <div><span>jQuery</span> → JavaScript library</div>
+    <div><span>Responsive Design</span> → adapts to screen sizes</div>
+    <div><span>Accessibility</span> → design for all users</div>
+    <div><span>Semantic HTML</span> → tags that describe meaning</div>
+    <div><span>Form Validation</span> → check input before processing</div>
+    <div><span>Flexbox</span> → 1D layout</div>
+    <div><span>CSS Grid</span> → 2D layout</div>
+    <div><span>Box Model</span> → Content + Padding + Border + Margin</div>
   </div>
 
   <hr>
-  <p style="text-align:center; color:#4a627a; margin-top:1.5rem;">
-    <i class="fas fa-check-circle" style="color:#1f6e8c;"></i> Programming 500 · Python · prepared for first-time learners
+  <p style="text-align:center; color:#64748b; margin-top:1.5rem;">
+    <i class="fas fa-check-circle" style="color:#2563eb;"></i> WEB TECH 511 · simplified for first-time learners · good luck!
   </p>
 
 </div> <!-- container -->
