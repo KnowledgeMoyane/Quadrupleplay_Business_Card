@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WEB TECH 511 · exam notes</title>
-  <!-- Font Awesome (optional but clean) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>HTML & CSS – complete study guide</title>
   <style>
-    /* ----- reset & base ----- */
+    /* ----- global reset & base ----- */
     * {
       margin: 0;
       padding: 0;
@@ -15,448 +13,720 @@
     }
 
     body {
-      background: #f8faff;
-      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
-      padding: 2rem 1.5rem;
-      color: #1e293b;
+      background: #f8fafc;
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      color: #0b1a2f;
+      padding: 2rem 1rem;
       line-height: 1.6;
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
       background: white;
-      padding: 2rem 2.5rem;
       border-radius: 32px;
-      box-shadow: 0 20px 40px -12px rgba(0,20,50,0.15);
+      padding: 2.5rem 2rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 20, 40, 0.25);
     }
 
-    /* ----- headers & titles ----- */
+    h1, h2, h3, h4 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+    }
+
     h1 {
       font-size: 2.6rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      background: linear-gradient(145deg, #0b2b5c, #1e4a7a);
+      margin-top: 0;
+      margin-bottom: 0.25rem;
+      background: linear-gradient(145deg, #0b2b5c, #1b4a8b);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 0.2rem;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    h1 small {
-      font-size: 1rem;
-      font-weight: 400;
-      background: #e6edf8;
-      padding: 0.2rem 1rem;
-      border-radius: 40px;
-      -webkit-text-fill-color: #1e3a6b;
-      color: #1e3a6b;
-      margin-left: 10px;
     }
 
     .subhead {
-      font-size: 1.1rem;
-      color: #475569;
-      border-left: 5px solid #3b82f6;
-      padding-left: 1.2rem;
-      margin: 0.5rem 0 2rem 0;
-      background: #f1f5fe;
-      border-radius: 0 20px 20px 0;
-      padding: 0.8rem 1.5rem;
+      font-size: 1.2rem;
+      color: #2c3e5c;
+      border-left: 5px solid #2b6c9e;
+      padding-left: 1rem;
+      margin-bottom: 2rem;
+      font-weight: 400;
     }
 
     h2 {
-      font-size: 2rem;
-      font-weight: 600;
-      margin-top: 2.8rem;
-      margin-bottom: 1rem;
+      font-size: 1.9rem;
+      border-bottom: 3px solid #dce6f0;
       padding-bottom: 0.4rem;
-      border-bottom: 4px solid #dbeafe;
-      color: #0b2b5c;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    h2 i {
-      font-size: 1.8rem;
-      color: #2563eb;
+      color: #10345e;
     }
 
     h3 {
       font-size: 1.4rem;
-      font-weight: 600;
-      margin: 1.8rem 0 0.6rem 0;
-      color: #1e3a6b;
+      color: #1a4a7a;
+      margin-top: 1.8rem;
     }
 
     h4 {
       font-size: 1.1rem;
-      font-weight: 600;
-      margin: 1.2rem 0 0.2rem 0;
-      color: #2d4a7a;
+      color: #1a4a7a;
+      margin-top: 1.2rem;
+      margin-bottom: 0.3rem;
     }
 
-    /* ----- cards & boxes ----- */
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin: 1.5rem 0 1rem 0;
+    p, li {
+      color: #1d2b3f;
+      margin-bottom: 0.6rem;
     }
 
-    .card {
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 1.5rem 1.6rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03), 0 2px 6px rgba(0,20,40,0.05);
-      border: 1px solid #eef2f8;
-      transition: 0.2s;
-    }
-    .card:hover {
-      border-color: #b9d0f0;
-      box-shadow: 0 12px 24px -8px rgba(30, 64, 120, 0.08);
-    }
-
-    .card code, .inline-code {
-      background: #eef4fc;
-      padding: 0.2rem 0.6rem;
+    /* ----- code & pre ----- */
+    code, .code-block {
+      background: #eef3f9;
+      font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
+      font-size: 0.9rem;
+      padding: 0.2rem 0.5rem;
       border-radius: 8px;
-      font-family: 'JetBrains Mono', 'Fira Code', monospace;
-      font-size: 0.9rem;
-      color: #1e3a6b;
+      color: #0b2b4a;
+      border: 1px solid #d7e0ea;
+      white-space: nowrap;
     }
 
-    .code-block {
-      background: #0f1a2e;
-      color: #e2e8f0;
-      padding: 1rem 1.5rem;
-      border-radius: 16px;
+    pre.code-block {
+      display: block;
+      white-space: pre;
       overflow-x: auto;
-      font-family: 'JetBrains Mono', monospace;
+      padding: 1.2rem 1.5rem;
+      background: #0d1f33;
+      color: #e2edf7;
+      border-radius: 16px;
+      border: none;
+      margin: 1.2rem 0;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,0.2);
       font-size: 0.9rem;
-      margin: 0.8rem 0 1.2rem 0;
-      border-left: 4px solid #3b82f6;
+      line-height: 1.5;
+    }
+
+    pre.code-block code {
+      background: transparent;
+      padding: 0;
+      border: none;
+      color: inherit;
+      white-space: pre;
+      font-size: 0.88rem;
+    }
+
+    .inline-code {
+      background: #eef3f9;
+      padding: 0.2rem 0.5rem;
+      border-radius: 6px;
+      font-family: monospace;
+      font-size: 0.9rem;
+      border: 1px solid #d7e0ea;
+    }
+
+    /* ----- tables & cards ----- */
+    .feature-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+      background: #f6faff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,20,40,0.06);
+    }
+
+    .feature-table th {
+      background: #1f3d62;
+      color: white;
+      font-weight: 600;
+      padding: 0.8rem 1rem;
+      text-align: left;
+    }
+
+    .feature-table td {
+      padding: 0.8rem 1rem;
+      border-bottom: 1px solid #dfe8f2;
+    }
+
+    .feature-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .tag-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 0.15rem 1rem;
+      background: #f6faff;
+      border-radius: 18px;
+      padding: 0.8rem 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .tag-grid .tag {
+      font-family: monospace;
+      font-weight: 600;
+      color: #0b3f6b;
+      background: #e5edf7;
+      padding: 0.15rem 0.6rem;
+      border-radius: 24px;
+      display: inline-block;
+      font-size: 0.9rem;
+    }
+
+    .tag-grid .desc {
+      color: #1b2f48;
+      padding: 0.3rem 0;
+    }
+
+    .tag-grid .badge {
+      background: #d5e2f0;
+      font-size: 0.7rem;
+      border-radius: 30px;
+      padding: 0.1rem 0.7rem;
+      margin-left: 0.4rem;
+      font-weight: 500;
+      color: #1d3f62;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .box-model-visual {
+      background: #e9f0fa;
+      border-radius: 28px;
+      padding: 1.8rem 1.5rem;
+      margin: 1.5rem 0;
+      text-align: center;
+      font-family: monospace;
+      border: 2px dashed #1e4b78;
+      font-size: 0.9rem;
+    }
+
+    .box-model-visual .layer {
+      background: white;
+      border-radius: 20px;
+      padding: 0.8rem;
+      margin: 0.3rem auto;
+      max-width: 80%;
+      border: 2px solid #1e4b78;
+    }
+
+    .box-model-visual .layer.margin {
+      background: #d9e6f7;
+      border-style: dashed;
+    }
+
+    .box-model-visual .layer.border {
+      background: #bcd2e9;
+      border-style: solid;
+    }
+
+    .box-model-visual .layer.padding {
+      background: #9db9db;
+      border-style: dotted;
+    }
+
+    .box-model-visual .layer.content {
+      background: #6d94bf;
+      color: white;
+      border: 2px solid #0a2f55;
+    }
+
+    /* ----- exercises ----- */
+    .exercise {
+      background: #f2f7ff;
+      border-radius: 24px;
+      padding: 1.8rem 2rem;
+      margin: 2rem 0;
+      border-left: 6px solid #2a6b9e;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .exercise .q {
+      font-weight: 600;
+      font-size: 1.1rem;
+      margin-bottom: 0.4rem;
+      color: #0b2a4a;
+    }
+
+    .exercise .type {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      background: #d4e2f5;
+      display: inline-block;
+      padding: 0.1rem 1rem;
+      border-radius: 40px;
+      color: #103c63;
+      font-weight: 600;
+    }
+
+    .exercise .answer {
+      background: white;
+      padding: 1.2rem 1.5rem;
+      border-radius: 16px;
+      margin-top: 0.8rem;
+      border: 1px solid #ceddec;
+      font-family: monospace;
       white-space: pre-wrap;
       word-break: break-word;
+      color: #0b2b4a;
+      font-size: 0.95rem;
     }
-    .code-block code {
-      background: transparent;
-      color: inherit;
+
+    .exercise .answer code {
+      background: #e6eefa;
+      border: none;
+    }
+
+    .exercise .mcq {
+      list-style: none;
+      padding: 0.3rem 0;
+    }
+
+    .exercise .mcq li {
+      padding: 0.15rem 0.2rem;
+    }
+
+    .hr-divider {
+      border: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #cbdae9, transparent);
+      margin: 2.8rem 0;
+    }
+
+    /* cheat sheet */
+    .cheat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem 3rem;
+      background: #f6faff;
+      border-radius: 28px;
+      padding: 1.8rem 2rem;
+      margin: 1.5rem 0;
+    }
+
+    .cheat-grid ul {
+      list-style: none;
       padding: 0;
     }
 
-    .table-wrap {
-      overflow-x: auto;
-      margin: 1.2rem 0;
-      border-radius: 16px;
-      border: 1px solid #e2e8f0;
+    .cheat-grid li {
+      padding: 0.25rem 0;
+      border-bottom: 1px solid #dfe8f2;
+      display: flex;
+      justify-content: space-between;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.95rem;
-    }
-    th {
-      background: #eef4fc;
-      text-align: left;
-      padding: 0.8rem 1rem;
+
+    .cheat-grid .tag {
+      font-family: monospace;
       font-weight: 600;
-      color: #0b2b5c;
-    }
-    td {
-      padding: 0.7rem 1rem;
-      border-top: 1px solid #e9edf4;
-    }
-    tr:hover td {
-      background: #f8fbff;
+      color: #103a62;
     }
 
-    .highlight-box {
-      background: #f0f7ff;
-      border-radius: 20px;
-      padding: 1.2rem 2rem;
-      margin: 1.5rem 0;
-      border-left: 8px solid #2563eb;
-    }
-
-    .topic-badge {
-      display: inline-block;
-      background: #dbeafe;
-      color: #1e3a6b;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 0.2rem 0.9rem;
-      border-radius: 30px;
-      letter-spacing: 0.3px;
-      margin-right: 0.5rem;
-    }
-
-    hr {
-      border: none;
-      height: 2px;
-      background: linear-gradient(to right, #dbeafe, transparent);
-      margin: 2.5rem 0 0.5rem 0;
-    }
-
-    /* definitions list */
-    .def-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
-      gap: 0.8rem 1.5rem;
-      background: #fafcff;
-      padding: 1.5rem 2rem;
-      border-radius: 28px;
-      border: 1px solid #e2ecfa;
-    }
-    .def-grid span {
-      font-weight: 600;
-      color: #0b2b5c;
-    }
-
-    .fa-li {
-      margin-right: 8px;
-      color: #2563eb;
-    }
-
-    /* responsive */
     @media (max-width: 700px) {
-      body { padding: 1rem 0.5rem; }
       .container { padding: 1.5rem 1rem; }
-      h1 { font-size: 2rem; flex-wrap: wrap; }
-      h2 { font-size: 1.6rem; }
-      .card-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+      .cheat-grid { grid-template-columns: 1fr; gap: 1rem; }
+      .tag-grid { grid-template-columns: 1fr; gap: 0.2rem; }
+      .feature-table { font-size: 0.85rem; }
+      .box-model-visual .layer { max-width: 100%; }
+    }
+
+    .footnote {
+      margin-top: 3rem;
+      text-align: center;
+      color: #3a5b7c;
+      border-top: 1px solid #d6e2f0;
+      padding-top: 1.8rem;
+      font-size: 0.95rem;
     }
   </style>
 </head>
 <body>
 <div class="container">
 
-  <!-- header -->
-  <h1>
-    <i class="fas fa-globe" style="background: linear-gradient(145deg,#0b2b5c,#2563eb); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"></i>
-    WEB TECH 511
-    <small>exam prep</small>
-  </h1>
-  <div class="subhead">
-    <i class="fas fa-graduation-cap" style="color:#2563eb; margin-right:10px;"></i>
-    Simplified notes · first-time learners · based on official scope
-  </div>
+  <h1>🌐 HTML & CSS · complete study guide</h1>
+  <div class="subhead">Everything in one page — concepts, all tags, syntax, differences, exercises, cheat sheet</div>
 
-  <!-- ========== TOPIC 1 ========== -->
-  <h2><i class="fas fa-network-wired"></i> 1. Internet &amp; WWW</h2>
-  <div class="card-grid">
-    <div class="card"><strong>🌐 Internet</strong> — global network of computers.<br><span class="inline-code">Roads = Internet</span> · cars = data · destinations = websites.<br><strong>Services:</strong> email, banking, social media, streaming, gaming, cloud.</div>
-    <div class="card"><strong>📄 WWW</strong> — collection of web pages &amp; sites running on the Internet.<br><span class="inline-code">Internet = network</span> · <span class="inline-code">WWW = websites</span></div>
-  </div>
-  <div class="table-wrap">
-    <table>
-      <tr><th>Internet</th><th>WWW</th></tr>
-      <tr><td>physical network</td><td>collection of websites</td></tr>
-      <tr><td>infrastructure</td><td>service running on Internet</td></tr>
-      <tr><td>exists without websites</td><td>depends on Internet</td></tr>
-    </table>
-  </div>
-  <div class="highlight-box">
-    <strong>📌 How a web page loads:</strong> URL → DNS finds IP → browser requests → server returns HTML/CSS/JS/images → browser displays.
-  </div>
-
-  <!-- ========== TOPIC 2 ========== -->
-  <h2><i class="fas fa-lock"></i> 2. HTTP &amp; HTTPS</h2>
-  <div class="card-grid">
-    <div class="card"><strong>HTTP</strong> = HyperText Transfer Protocol · transfers web pages. <span class="inline-code">http://example.com</span></div>
-    <div class="card"><strong>HTTPS</strong> = HyperText Transfer Protocol <strong>Secure</strong> · encrypted. <span class="inline-code">https://example.com</span></div>
-  </div>
-  <div class="table-wrap">
-    <table>
-      <tr><th>HTTP</th><th>HTTPS</th></tr>
-      <tr><td>not secure</td><td>secure</td></tr>
-      <tr><td>data visible</td><td>data encrypted</td></tr>
-      <tr><td>no SSL</td><td>uses SSL/TLS certificate</td></tr>
-      <tr><td>less trusted</td><td>more trusted</td></tr>
-    </table>
-  </div>
-  <div class="highlight-box"><strong>✅ For online banking → always use HTTPS.</strong> Protects passwords, banking details, prevents hackers.</div>
-
-  <!-- ========== TOPIC 3 ========== -->
-  <h2><i class="fas fa-universal-access"></i> 3. Accessibility</h2>
-  <p>Make websites usable for <strong>everyone</strong> — blind, deaf, colour-blind, elderly.</p>
-  <div class="card-grid">
-    <div class="card"><span class="topic-badge">alt text</span> <code>&lt;img src="dog.jpg" alt="Brown dog running"&gt;</code> · screen readers describe images.</div>
-    <div class="card"><span class="topic-badge">headings</span> use <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> in order.</div>
-    <div class="card"><span class="topic-badge">contrast</span> black on white (good) · yellow on white (bad).</div>
-    <div class="card"><span class="topic-badge">semantic HTML</span> <code>&lt;header&gt; &lt;nav&gt; &lt;main&gt; &lt;footer&gt;</code> improves understanding.</div>
-  </div>
-
-  <!-- ========== TOPIC 4 ========== -->
-  <h2><i class="fas fa-mobile-alt"></i> 4. Responsive Design</h2>
-  <div class="card-grid">
-    <div class="card">Adapts to phones, tablets, laptops, desktops.<br><span class="inline-code">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></div>
-    <div class="card">✅ better UX · mobile friendly · faster navigation</div>
-  </div>
-
-  <!-- ========== TOPIC 5 ========== -->
-  <h2><i class="fas fa-code"></i> 5. HTML Document Structure</h2>
-  <div class="code-block">&lt;!DOCTYPE html&gt;
+  <!-- 1. WHAT IS HTML -->
+  <h2>1. What is HTML?</h2>
+  <p><strong>HTML</strong> (HyperText Markup Language) is the standard language used to create the structure and content of webpages. Every element you see — headings, paragraphs, images, buttons, links — exists because an HTML tag placed it there.</p>
+  <p>HTML does <em>not</em> make things look pretty. It only defines what exists and in what order.</p>
+  <h4>Minimal HTML page</h4>
+  <pre class="code-block"><code>&lt;!DOCTYPE html&gt;
 &lt;html&gt;
-&lt;head&gt;
-  &lt;title&gt;My Website&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;!-- content --&gt;
-&lt;/body&gt;
-&lt;/html&gt;</div>
-  <div class="card-grid">
-    <div class="card"><code>&lt;!DOCTYPE html&gt;</code> → HTML5</div>
-    <div class="card"><code>&lt;html&gt;</code> → root</div>
-    <div class="card"><code>&lt;head&gt;</code> → metadata</div>
-    <div class="card"><code>&lt;body&gt;</code> → visible content</div>
+  &lt;head&gt;
+    &lt;title&gt;My First Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello World&lt;/h1&gt;
+    &lt;p&gt;This is my first webpage.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+  <!-- 2. WHAT IS CSS -->
+  <h2>2. What is CSS?</h2>
+  <p><strong>CSS</strong> (Cascading Style Sheets) is the language used to style HTML elements — controlling colors, fonts, sizes, spacing, layout, animations, and more. CSS cannot create content; it only changes how existing HTML elements appear.</p>
+  <p>CSS is called "cascading" because when multiple style rules target the same element, they follow a specific order of priority.</p>
+  <h4>CSS that styles the page above</h4>
+  <pre class="code-block"><code>body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 40px;
+}
+h1 {
+  color: navy;
+  font-size: 36px;
+}
+p {
+  color: #444;
+  line-height: 1.6;
+}</code></pre>
+
+  <!-- 3. CORE DIFFERENCE -->
+  <h2>3. The core difference</h2>
+  <p><strong>Analogy:</strong> HTML is the architecture — front door, rooms, windows. CSS is the interior design — paint, curtains, furniture. You need both, but they do completely different jobs.</p>
+  <p><strong>HTML answers:</strong> What is on the page? Is this a heading or a paragraph? What text? What order?</p>
+  <p><strong>CSS answers:</strong> What color? How large? Where is it positioned? Padding? Border? Hover effect?</p>
+
+  <table class="feature-table">
+    <thead><tr><th>Feature</th><th>HTML</th><th>CSS</th></tr></thead>
+    <tbody>
+      <tr><td>Purpose</td><td>Structure &amp; content</td><td>Style &amp; appearance</td></tr>
+      <tr><td>File extension</td><td>.html</td><td>.css</td></tr>
+      <tr><td>Syntax pattern</td><td>&lt;tag&gt;content&lt;/tag&gt;</td><td>selector { property: value; }</td></tr>
+      <tr><td>Can it work alone?</td><td>Yes (but looks plain)</td><td>No — needs HTML</td></tr>
+      <tr><td>Controls</td><td>Text, images, links, forms</td><td>Colors, fonts, spacing, layout</td></tr>
+      <tr><td>Key characters</td><td>&lt; &gt; / = " "</td><td>{ } : ; . # *</td></tr>
+      <tr><td>Analogy</td><td>Skeleton</td><td>Skin &amp; clothing</td></tr>
+    </tbody>
+  </table>
+
+  <!-- 4. HTML SYNTAX -->
+  <h2>4. HTML syntax explained</h2>
+  <p>HTML is made up of <strong>elements</strong>. Each element consists of an opening tag, content, and a closing tag. Some tags are self-closing.</p>
+  <pre class="code-block"><code>&lt;h1&gt;Hello World!&lt;/h1&gt;
+&lt;a href="https://example.com"&gt;Visit us&lt;/a&gt;</code></pre>
+  <p><span class="inline-code">&lt;img src="photo.jpg"&gt;</span> · <span class="inline-code">&lt;br&gt;</span> · <span class="inline-code">&lt;hr&gt;</span> · <span class="inline-code">&lt;input type="text"&gt;</span> are self-closing.</p>
+
+  <!-- 5. DOCUMENT STRUCTURE -->
+  <h2>5. HTML document structure</h2>
+  <pre class="code-block"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width"&gt;
+    &lt;title&gt;Page Title&lt;/title&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;My Heading&lt;/h1&gt;
+    &lt;p&gt;My paragraph.&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+  <div class="tag-grid">
+    <div><span class="tag">&lt;!DOCTYPE html&gt;</span></div><div class="desc">Declares HTML5. Must be first line.</div>
+    <div><span class="tag">&lt;html&gt;</span></div><div class="desc">Root element. <span class="badge">lang</span></div>
+    <div><span class="tag">&lt;head&gt;</span></div><div class="desc">Metadata (not visible).</div>
+    <div><span class="tag">&lt;meta&gt;</span></div><div class="desc">Charset, viewport, etc.</div>
+    <div><span class="tag">&lt;title&gt;</span></div><div class="desc">Browser tab title.</div>
+    <div><span class="tag">&lt;link&gt;</span></div><div class="desc">External resources (CSS).</div>
+    <div><span class="tag">&lt;body&gt;</span></div><div class="desc">All visible content.</div>
   </div>
 
-  <!-- ========== TOPIC 6 ========== -->
-  <h2><i class="fas fa-tags"></i> 6. Meta Tags</h2>
-  <div class="code-block">&lt;meta charset="UTF-8"&gt;
-&lt;meta name="description" content="Computer Science Notes"&gt;
-&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</div>
-
-  <!-- ========== TOPIC 7 ========== -->
-  <h2><i class="fas fa-heading"></i> 7. Headings, Paragraphs &amp; Text</h2>
-  <div class="card-grid">
-    <div class="card"><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> · <code>&lt;p&gt;</code> paragraph · <code>&lt;br&gt;</code> line break</div>
-    <div class="card"><strong>bold:</strong> <code>&lt;strong&gt;</code> · <strong>italic:</strong> <code>&lt;em&gt;</code></div>
+  <!-- 6. HTML TAGS complete reference -->
+  <h2>6. HTML tags — complete reference</h2>
+  <h3>Text &amp; headings</h3>
+  <div class="tag-grid">
+    <div><span class="tag">&lt;h1&gt;–&lt;h6&gt;</span></div><div class="desc">Headings. Only one &lt;h1&gt; per page.</div>
+    <div><span class="tag">&lt;p&gt;</span></div><div class="desc">Paragraph block.</div>
+    <div><span class="tag">&lt;span&gt;</span></div><div class="desc">Inline container for styling.</div>
+    <div><span class="tag">&lt;strong&gt;</span> <span class="badge">semantic</span></div><div class="desc">Bold + importance.</div>
+    <div><span class="tag">&lt;em&gt;</span> <span class="badge">semantic</span></div><div class="desc">Italic + emphasis.</div>
+    <div><span class="tag">&lt;b&gt;</span></div><div class="desc">Bold (visual only).</div>
+    <div><span class="tag">&lt;i&gt;</span></div><div class="desc">Italic (visual only).</div>
+    <div><span class="tag">&lt;br&gt;</span> <span class="badge">self-closing</span></div><div class="desc">Line break.</div>
+    <div><span class="tag">&lt;hr&gt;</span> <span class="badge">self-closing</span></div><div class="desc">Horizontal rule.</div>
+    <div><span class="tag">&lt;blockquote&gt;</span></div><div class="desc">Quotation block.</div>
+    <div><span class="tag">&lt;pre&gt;</span></div><div class="desc">Preformatted text.</div>
+    <div><span class="tag">&lt;code&gt;</span></div><div class="desc">Inline code snippet.</div>
+    <div><span class="tag">&lt;sub&gt; / &lt;sup&gt;</span></div><div class="desc">Subscript / superscript.</div>
   </div>
 
-  <!-- ========== TOPIC 8 ========== -->
-  <h2><i class="fas fa-link"></i> 8. Hyperlinks</h2>
-  <div class="code-block">&lt;a href="https://google.com"&gt;Google&lt;/a&gt;          &lt;!-- external --&gt;
-&lt;a href="about.html"&gt;About&lt;/a&gt;             &lt;!-- internal --&gt;
-&lt;a href="mailto:test@gmail.com"&gt;Email Us&lt;/a&gt;</div>
-
-  <!-- ========== TOPIC 9 ========== -->
-  <h2><i class="fas fa-image"></i> 9. Images</h2>
-  <div class="code-block">&lt;img src="image.jpg" alt="Description"&gt;</div>
-  <div class="table-wrap">
-    <table><tr><th>Format</th><th>Use</th></tr><tr><td>JPG</td><td>photos</td></tr><tr><td>PNG</td><td>transparent images</td></tr><tr><td>GIF</td><td>animations</td></tr><tr><td>SVG</td><td>logos</td></tr></table>
+  <h3>Links &amp; navigation</h3>
+  <div class="tag-grid">
+    <div><span class="tag">&lt;a&gt;</span></div><div class="desc">Hyperlink. <span class="badge">href</span> <span class="badge">target</span></div>
+    <div><span class="tag">&lt;nav&gt;</span> <span class="badge">semantic</span></div><div class="desc">Navigation section.</div>
   </div>
 
-  <!-- ========== TOPIC 10 ========== -->
-  <h2><i class="fas fa-bars"></i> 10. Navigation Menus</h2>
-  <div class="code-block">&lt;nav&gt;
-  &lt;a href="home.html"&gt;Home&lt;/a&gt;
-  &lt;a href="about.html"&gt;About&lt;/a&gt;
-  &lt;a href="contact.html"&gt;Contact&lt;/a&gt;
-&lt;/nav&gt;</div>
-
-  <!-- ========== TOPIC 11 ========== -->
-  <h2><i class="fas fa-tags"></i> 11. Semantic HTML</h2>
-  <div class="card-grid">
-    <div class="card"><code>&lt;header&gt;</code> top · <code>&lt;nav&gt;</code> navigation</div>
-    <div class="card"><code>&lt;main&gt;</code> main content · <code>&lt;section&gt;</code> section</div>
-    <div class="card"><code>&lt;article&gt;</code> independent · <code>&lt;footer&gt;</code> bottom</div>
+  <h3>Images &amp; media</h3>
+  <div class="tag-grid">
+    <div><span class="tag">&lt;img&gt;</span> <span class="badge">self-closing</span></div><div class="desc">Image. <span class="badge">src</span> <span class="badge">alt</span></div>
+    <div><span class="tag">&lt;figure&gt;</span> <span class="badge">semantic</span></div><div class="desc">Groups image + caption.</div>
+    <div><span class="tag">&lt;figcaption&gt;</span></div><div class="desc">Caption for figure.</div>
+    <div><span class="tag">&lt;video&gt;</span></div><div class="desc">Video player.</div>
+    <div><span class="tag">&lt;audio&gt;</span></div><div class="desc">Audio player.</div>
+    <div><span class="tag">&lt;iframe&gt;</span></div><div class="desc">Embed another page.</div>
   </div>
 
-  <!-- ========== TOPIC 12–20 ========== -->
-  <h2><i class="fas fa-paint-brush"></i> 12–20. CSS Basics · Selectors · Colours · Fonts · Borders · Spacing · Box Model · Flexbox · Grid</h2>
-  <div class="card-grid">
-    <div class="card"><strong>CSS syntax:</strong> <code>selector { property: value; }</code><br><span class="inline-code">p { color: blue; }</span></div>
-    <div class="card"><strong>Selectors:</strong> element <code>p</code> · class <code>.note</code> · id <code>#title</code></div>
-    <div class="card"><strong>Colours:</strong> named <code>red</code> · hex <code>#FF0000</code> · background <code>background-color: yellow;</code></div>
-    <div class="card"><strong>Fonts:</strong> <code>font-family: Arial;</code> · <code>font-size:20px;</code> · <code>font-style:italic;</code></div>
-    <div class="card"><strong>Borders:</strong> <code>border:2px solid black;</code></div>
-    <div class="card"><strong>Spacing:</strong> padding (inside) · margin (outside)</div>
-    <div class="card"><strong>Box Model:</strong> <span class="inline-code">Margin → Border → Padding → Content</span></div>
-    <div class="card"><strong>Flexbox:</strong> <code>display:flex;</code> · <code>justify-content:center;</code> · <code>align-items:center;</code></div>
-    <div class="card"><strong>Grid:</strong> <code>display:grid; grid-template-columns:1fr 1fr;</code> · 2D layout</div>
-  </div>
-  <div class="highlight-box"><strong>Flexbox</strong> = one dimension · <strong>Grid</strong> = two dimensions (rows &amp; columns)</div>
-
-  <!-- ========== TOPIC 21 ========== -->
-  <h2><i class="fas fa-table"></i> 21. HTML Tables</h2>
-  <div class="code-block">&lt;table&gt;
-  &lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Age&lt;/th&gt;&lt;/tr&gt;
-  &lt;tr&gt;&lt;td&gt;John&lt;/td&gt;&lt;td&gt;20&lt;/td&gt;&lt;/tr&gt;
-&lt;/table&gt;</div>
-  <div class="card-grid">
-    <div class="card"><code>&lt;table&gt;</code> · <code>&lt;tr&gt;</code> row · <code>&lt;th&gt;</code> heading · <code>&lt;td&gt;</code> data · <code>&lt;caption&gt;</code> title</div>
-    <div class="card">CSS hover: <code>tr:hover { background-color:yellow; }</code></div>
+  <h3>Lists</h3>
+  <div class="tag-grid">
+    <div><span class="tag">&lt;ul&gt;</span></div><div class="desc">Unordered (bullets).</div>
+    <div><span class="tag">&lt;ol&gt;</span></div><div class="desc">Ordered (numbers).</div>
+    <div><span class="tag">&lt;li&gt;</span></div><div class="desc">List item.</div>
+    <div><span class="tag">&lt;dl&gt;</span></div><div class="desc">Definition list.</div>
+    <div><span class="tag">&lt;dt&gt; &lt;dd&gt;</span></div><div class="desc">Term / definition.</div>
   </div>
 
-  <!-- ========== TOPIC 22–28 ========== -->
-  <h2><i class="fas fa-clipboard-list"></i> 22–28. Forms · Input types · Radio · Checkbox · Dropdown · Textarea · Validation</h2>
-  <div class="card-grid">
-    <div class="card"><strong>Form:</strong> <code>&lt;form action="save.php" method="POST"&gt;</code></div>
-    <div class="card"><strong>Input types:</strong> text, email, number, date, password</div>
-    <div class="card"><strong>Radio:</strong> <code>&lt;input type="radio" name="gender"&gt;</code> (one choice)</div>
-    <div class="card"><strong>Checkbox:</strong> <code>&lt;input type="checkbox"&gt;</code> (multiple)</div>
-    <div class="card"><strong>Dropdown:</strong> <code>&lt;select&gt;&lt;option&gt;SA&lt;/option&gt;&lt;/select&gt;</code></div>
-    <div class="card"><strong>Textarea:</strong> <code>&lt;textarea&gt;&lt;/textarea&gt;</code> for large text</div>
-    <div class="card"><strong>Validation:</strong> <code>required</code> · <code>type="email"</code> · <code>min="1" max="100"</code></div>
+  <h3>Layout &amp; containers</h3>
+  <div class="tag-grid">
+    <div><span class="tag">&lt;div&gt;</span></div><div class="desc">Generic block container.</div>
+    <div><span class="tag">&lt;span&gt;</span></div><div class="desc">Generic inline container.</div>
+    <div><span class="tag">&lt;header&gt;</span> <span class="badge">semantic</span></div><div class="desc">Page / section top.</div>
+    <div><span class="tag">&lt;footer&gt;</span> <span class="badge">semantic</span></div><div class="desc">Page / section bottom.</div>
+    <div><span class="tag">&lt;main&gt;</span> <span class="badge">semantic</span></div><div class="desc">Primary content (only one).</div>
+    <div><span class="tag">&lt;section&gt;</span> <span class="badge">semantic</span></div><div class="desc">Thematic group.</div>
+    <div><span class="tag">&lt;article&gt;</span> <span class="badge">semantic</span></div><div class="desc">Self-contained content.</div>
+    <div><span class="tag">&lt;aside&gt;</span> <span class="badge">semantic</span></div><div class="desc">Sidebar / related content.</div>
   </div>
 
-  <!-- ========== TOPIC 29–34 ========== -->
-  <h2><i class="fab fa-js"></i> 29–34. JavaScript Variables · Functions · prompt/alert · Decisions · Validation · Error Handling</h2>
-  <div class="code-block">// variable
-let name = "John";
-let age = 20;
-let passed = true;
-
-// function
-function greet() { alert("Hello"); }
-greet();
-
-// prompt & alert
-let name = prompt("Enter your name");
-alert("Welcome");
-
-// decision
-if (age >= 18) { alert("Adult"); }
-else if (age >= 13) { alert("Teen"); }
-else { alert("Minor"); }
-
-// validation
-if (age == "") { alert("Age required"); }
-if (isNaN(age)) { alert("Numbers only"); }</div>
-
-  <!-- ========== TOPIC 35–37 ========== -->
-  <h2><i class="fas fa-code"></i> 35–37. jQuery · Events · Methods</h2>
-  <div class="card-grid">
-    <div class="card"><strong>jQuery</strong> = JavaScript library · easier coding.<br><span class="inline-code">$("p")</span> selects all paragraphs · <span class="inline-code">$("#title")</span> · <span class="inline-code">$(".box")</span></div>
-    <div class="card"><strong>Click:</strong> <code>$("#btn").click(function(){ alert("Clicked"); });</code></div>
-    <div class="card"><strong>Methods:</strong> <code>hide()</code> · <code>show()</code> · <code>fadeIn()</code> · <code>text("Hello")</code> · <code>css("color","red")</code></div>
+  <h3>Tables</h3>
+  <div class="tag-grid">
+    <div><span class="tag">&lt;table&gt;</span></div><div class="desc">Table container.</div>
+    <div><span class="tag">&lt;thead&gt; &lt;tbody&gt; &lt;tfoot&gt;</span></div><div class="desc">Header / body / footer.</div>
+    <div><span class="tag">&lt;tr&gt;</span></div><div class="desc">Table row.</div>
+    <div><span class="tag">&lt;th&gt;</span></div><div class="desc">Header cell. <span class="badge">scope</span></div>
+    <div><span class="tag">&lt;td&gt;</span></div><div class="desc">Data cell. <span class="badge">colspan</span> <span class="badge">rowspan</span></div>
   </div>
 
-  <!-- ========== TOPIC 38 ========== -->
-  <h2><i class="fas fa-layer-group"></i> 38. Integration (HTML + CSS + JS + jQuery)</h2>
-  <div class="highlight-box">
-    <strong>HTML</strong> = structure · <strong>CSS</strong> = appearance · <strong>JavaScript</strong> = functionality · <strong>jQuery</strong> = easier JavaScript
+  <h3>Forms</h3>
+  <div class="tag-grid">
+    <div><span class="tag">&lt;form&gt;</span></div><div class="desc">Form container. <span class="badge">action</span> <span class="badge">method</span></div>
+    <div><span class="tag">&lt;input&gt;</span> <span class="badge">self-closing</span></div><div class="desc">Versatile input. <span class="badge">type</span></div>
+    <div><span class="tag">&lt;label&gt;</span></div><div class="desc">Describes a control. <span class="badge">for</span></div>
+    <div><span class="tag">&lt;textarea&gt;</span></div><div class="desc">Multi-line text.</div>
+    <div><span class="tag">&lt;select&gt; &lt;option&gt;</span></div><div class="desc">Dropdown menu.</div>
+    <div><span class="tag">&lt;button&gt;</span></div><div class="desc">Clickable button. <span class="badge">type</span></div>
+    <div><span class="tag">&lt;fieldset&gt; &lt;legend&gt;</span></div><div class="desc">Group related controls.</div>
   </div>
 
-  <!-- ========== DEFINITIONS ========== -->
-  <h2 style="margin-top:3rem;"><i class="fas fa-list-ul"></i> Most Important Exam Definitions</h2>
-  <div class="def-grid">
-    <div><span>Internet</span> → global network of computers</div>
-    <div><span>WWW</span> → collection of websites on the Internet</div>
-    <div><span>HTTP</span> → HyperText Transfer Protocol</div>
-    <div><span>HTTPS</span> → secure version of HTTP</div>
-    <div><span>HTML</span> → HyperText Markup Language</div>
-    <div><span>CSS</span> → Cascading Style Sheets</div>
-    <div><span>JavaScript</span> → web interactivity</div>
-    <div><span>jQuery</span> → JavaScript library</div>
-    <div><span>Responsive Design</span> → adapts to screen sizes</div>
-    <div><span>Accessibility</span> → design for all users</div>
-    <div><span>Semantic HTML</span> → tags that describe meaning</div>
-    <div><span>Form Validation</span> → check input before processing</div>
-    <div><span>Flexbox</span> → 1D layout</div>
-    <div><span>CSS Grid</span> → 2D layout</div>
-    <div><span>Box Model</span> → Content + Padding + Border + Margin</div>
+  <h4>Complete contact form example</h4>
+  <pre class="code-block"><code>&lt;form action="/contact" method="post"&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt;Your details&lt;/legend&gt;
+    &lt;label for="name"&gt;Full name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" placeholder="Jane Smith"&gt;
+    &lt;label for="email"&gt;Email address:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" placeholder="jane@email.com"&gt;
+    &lt;label for="subject"&gt;Subject:&lt;/label&gt;
+    &lt;select id="subject" name="subject"&gt;
+      &lt;option value="general"&gt;General enquiry&lt;/option&gt;
+      &lt;option value="support"&gt;Technical support&lt;/option&gt;
+      &lt;option value="billing"&gt;Billing&lt;/option&gt;
+    &lt;/select&gt;
+    &lt;label for="message"&gt;Message:&lt;/label&gt;
+    &lt;textarea id="message" name="message" rows="5"&gt;&lt;/textarea&gt;
+    &lt;button type="submit"&gt;Send message&lt;/button&gt;
+  &lt;/fieldset&gt;
+&lt;/form&gt;</code></pre>
+
+  <!-- 7. CSS SYNTAX -->
+  <h2>7. CSS syntax explained</h2>
+  <p>A CSS rule has a <strong>selector</strong>, a <strong>property</strong>, and a <strong>value</strong>.</p>
+  <pre class="code-block"><code>h1 {
+  color: navy;
+  font-size: 32px;
+}</code></pre>
+  <h3>Three types of CSS selector</h3>
+  <pre class="code-block"><code>/* 1. Element selector */
+p { color: gray; }
+
+/* 2. Class selector */
+.highlight { background: yellow; }
+
+/* 3. ID selector */
+#header { background: navy; }
+
+/* combined, descendant, pseudo */
+h1, h2, h3 { font-family: Georgia; }
+.card p { color: #555; }
+.btn:hover { background: darkblue; }</code></pre>
+
+  <!-- 8. LINKING CSS -->
+  <h2>8. Linking CSS to HTML</h2>
+  <p><strong>External (best practice):</strong></p>
+  <pre class="code-block"><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
+  <p><strong>Internal (single page):</strong></p>
+  <pre class="code-block"><code>&lt;style&gt; h1 { color: navy; } &lt;/style&gt;</code></pre>
+  <p><strong>Inline (avoid):</strong> <span class="inline-code">&lt;h1 style="color: navy;"&gt;</span></p>
+
+  <!-- 9. COMMON CSS PROPERTIES -->
+  <h2>9. Common CSS properties</h2>
+  <div class="cheat-grid">
+    <div>
+      <h4>Text &amp; font</h4>
+      <ul>
+        <li><span class="tag">color:</span> red;</li>
+        <li><span class="tag">font-size:</span> 18px;</li>
+        <li><span class="tag">font-family:</span> Arial, sans-serif;</li>
+        <li><span class="tag">font-weight:</span> bold;</li>
+        <li><span class="tag">text-align:</span> center;</li>
+        <li><span class="tag">text-decoration:</span> underline;</li>
+        <li><span class="tag">line-height:</span> 1.6;</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Background &amp; borders</h4>
+      <ul>
+        <li><span class="tag">background-color:</span> #f0f0f0;</li>
+        <li><span class="tag">background-image:</span> url(img.jpg);</li>
+        <li><span class="tag">border:</span> 1px solid black;</li>
+        <li><span class="tag">border-radius:</span> 8px;</li>
+        <li><span class="tag">box-shadow:</span> 2px 2px 5px gray;</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Spacing — box model</h4>
+      <ul>
+        <li><span class="tag">width:</span> 300px;</li>
+        <li><span class="tag">height:</span> 200px;</li>
+        <li><span class="tag">padding:</span> 20px;</li>
+        <li><span class="tag">margin:</span> 20px auto;</li>
+        <li><span class="tag">margin-bottom:</span> 16px;</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Layout &amp; display</h4>
+      <ul>
+        <li><span class="tag">display:</span> block / inline / flex / grid / none;</li>
+        <li><span class="tag">position:</span> relative / absolute;</li>
+        <li><span class="tag">float:</span> left;</li>
+        <li><span class="tag">overflow:</span> hidden;</li>
+        <li><span class="tag">visibility:</span> hidden;</li>
+      </ul>
+    </div>
   </div>
 
-  <hr>
-  <p style="text-align:center; color:#64748b; margin-top:1.5rem;">
-    <i class="fas fa-check-circle" style="color:#2563eb;"></i> WEB TECH 511 · simplified for first-time learners · good luck!
-  </p>
+  <!-- 10. BOX MODEL -->
+  <h2>10. The CSS box model</h2>
+  <div class="box-model-visual">
+    <div class="layer margin">MARGIN (outside border)</div>
+    <div class="layer border">BORDER</div>
+    <div class="layer padding">PADDING</div>
+    <div class="layer content">CONTENT (width / height)</div>
+  </div>
+  <pre class="code-block"><code>div {
+  width: 200px;
+  padding: 20px;
+  border: 2px solid;
+  margin: 30px;
+}
+/* total width = 200 + 20+20 + 2+2 + 30+30 = 304px */</code></pre>
 
-</div> <!-- container -->
+  <!-- 11. EXERCISES -->
+  <h2>11. Exercises</h2>
+
+  <!-- Q1 -->
+  <div class="exercise"><div class="q">1. What does CSS stand for?</div><div class="type">multiple choice</div>
+    <ul class="mcq"><li>a) Computer Style Sheets</li><li>b) Cascading Style Sheets</li><li>c) Creative Style Syntax</li><li>d) Colorful Style Sheets</li></ul>
+    <div class="answer"><strong>✅ b) Cascading Style Sheets</strong></div>
+  </div>
+  <!-- Q2 -->
+  <div class="exercise"><div class="q">2. Which tag links an external CSS file to HTML?</div><div class="type">multiple choice</div>
+    <ul class="mcq"><li>a) &lt;style src="styles.css"&gt;</li><li>b) &lt;css href="styles.css"&gt;</li><li>c) &lt;link rel="stylesheet" href="styles.css"&gt;</li><li>d) &lt;script href="styles.css"&gt;</li></ul>
+    <div class="answer"><strong>✅ c) &lt;link rel="stylesheet" href="styles.css"&gt;</strong></div>
+  </div>
+  <!-- Q3 -->
+  <div class="exercise"><div class="q">3. Is this HTML or CSS?</div><div class="type">identify</div>
+    <pre>.nav { background-color: black; color: white; }</pre>
+    <div class="answer"><strong>✅ CSS</strong></div>
+  </div>
+  <!-- Q4 -->
+  <div class="exercise"><div class="q">4. Is this HTML or CSS?</div><div class="type">identify</div>
+    <pre>&lt;ul&gt;&lt;li&gt;Apples&lt;/li&gt;&lt;li&gt;Oranges&lt;/li&gt;&lt;/ul&gt;</pre>
+    <div class="answer"><strong>✅ HTML</strong></div>
+  </div>
+  <!-- Q5 -->
+  <div class="exercise"><div class="q">5. What is the correct selector for elements with class="box"?</div><div class="type">multiple choice</div>
+    <ul class="mcq"><li>a) #box { }</li><li>b) .box { }</li><li>c) *box { }</li><li>d) box { }</li></ul>
+    <div class="answer"><strong>✅ b) .box { }</strong></div>
+  </div>
+  <!-- Q6 -->
+  <div class="exercise"><div class="q">6. What is wrong with this HTML? <span class="inline-code">&lt;p&gt;Welcome to my website.&lt;p&gt;</span></div><div class="type">spot the bug</div>
+    <div class="answer"><strong>❌ The closing tag should be &lt;/p&gt; (not &lt;p&gt;).</strong></div>
+  </div>
+  <!-- Q7 -->
+  <div class="exercise"><div class="q">7. What is wrong with this CSS?</div><div class="type">spot the bug</div>
+    <pre>h1
+  color: blue
+  font-size: 32px</pre>
+    <div class="answer"><strong>❌ Missing curly braces { } and semicolons after each declaration.</strong></div>
+  </div>
+  <!-- Q8 -->
+  <div class="exercise"><div class="q">8. What is the difference between &lt;div&gt; and &lt;section&gt;?</div><div class="type">multiple choice</div>
+    <ul class="mcq"><li>a) &lt;div&gt; can only contain text; &lt;section&gt; can contain anything</li><li>b) They are identical</li><li>c) &lt;div&gt; is generic; &lt;section&gt; is semantic and implies a thematic group</li><li>d) &lt;section&gt; is for CSS only</li></ul>
+    <div class="answer"><strong>✅ c) &lt;div&gt; is generic; &lt;section&gt; is semantic.</strong></div>
+  </div>
+  <!-- Q9 -->
+  <div class="exercise"><div class="q">9. Write the HTML for an image called logo.png, alt text "Company logo".</div><div class="type">write the code</div>
+    <div class="answer"><strong>&lt;img src="logo.png" alt="Company logo"&gt;</strong></div>
+  </div>
+  <!-- Q10 -->
+  <div class="exercise"><div class="q">10. Write CSS to center text and set a blue background on all &lt;header&gt; elements.</div><div class="type">write the code</div>
+    <div class="answer"><strong>header { text-align: center; background-color: blue; }</strong></div>
+  </div>
+  <!-- Q11 -->
+  <div class="exercise"><div class="q">11. What is the purpose of the &lt;label&gt; tag in forms?</div><div class="type">multiple choice</div>
+    <ul class="mcq"><li>a) Creates a text input</li><li>b) Describes a form control and improves accessibility</li><li>c) Submits the form</li><li>d) Only for styling</li></ul>
+    <div class="answer"><strong>✅ b) Describes a form control and improves accessibility.</strong></div>
+  </div>
+  <!-- Q12 -->
+  <div class="exercise"><div class="q">12. What box-model property creates space OUTSIDE the border?</div><div class="type">multiple choice</div>
+    <ul class="mcq"><li>a) padding</li><li>b) margin</li><li>c) border</li><li>d) spacing</li></ul>
+    <div class="answer"><strong>✅ b) margin</strong></div>
+  </div>
+  <!-- Q13 -->
+  <div class="exercise"><div class="q">13. Build a labelled email input: label "Email address", linked, input type="email" name="email".</div><div class="type">write the code</div>
+    <div class="answer"><strong>&lt;label for="email"&gt;Email address:&lt;/label&gt;&lt;input type="email" id="email" name="email"&gt;</strong></div>
+  </div>
+  <!-- Q14 -->
+  <div class="exercise"><div class="q">14. True or false: &lt;strong&gt; and &lt;b&gt; produce the exact same result.</div><div class="type">true / false</div>
+    <div class="answer"><strong>❌ False — they look the same but &lt;strong&gt; has semantic importance.</strong></div>
+  </div>
+  <!-- Q15 -->
+  <div class="exercise"><div class="q">15. What is wrong with this form?</div><div class="type">spot the bug</div>
+    <pre>&lt;label&gt;Username:&lt;/label&gt;
+&lt;input type="text" id="user" name="user"&gt;</pre>
+    <div class="answer"><strong>❌ The label is not linked to the input (missing <span class="inline-code">for="user"</span>).</strong></div>
+  </div>
+
+  <!-- 12. CHEAT SHEET -->
+  <h2>12. Quick-reference cheat sheet</h2>
+  <div class="cheat-grid">
+    <div>
+      <h4>HTML — essential tags</h4>
+      <ul><li><span class="tag">&lt;h1&gt;–&lt;h6&gt;</span> Headings</li><li><span class="tag">&lt;p&gt;</span> Paragraph</li><li><span class="tag">&lt;a href=""&gt;</span> Link</li><li><span class="tag">&lt;img src="" alt=""&gt;</span> Image</li><li><span class="tag">&lt;div&gt;</span> Block container</li><li><span class="tag">&lt;span&gt;</span> Inline container</li><li><span class="tag">&lt;ul&gt; &lt;ol&gt;</span> Lists</li><li><span class="tag">&lt;table&gt;&lt;tr&gt;&lt;td&gt;</span> Table</li><li><span class="tag">&lt;form&gt;</span> Form</li><li><span class="tag">&lt;input&gt;</span> Input</li><li><span class="tag">&lt;button&gt;</span> Button</li></ul>
+    </div>
+    <div>
+      <h4>CSS — common properties</h4>
+      <ul><li><span class="tag">color:</span> Text color</li><li><span class="tag">background-color:</span> Background</li><li><span class="tag">font-size:</span> Size</li><li><span class="tag">font-family:</span> Font</li><li><span class="tag">font-weight: bold;</span> Weight</li><li><span class="tag">text-align: center;</span> Alignment</li><li><span class="tag">padding: 10px;</span> Inside space</li><li><span class="tag">margin: 20px auto;</span> Outside space</li><li><span class="tag">width: 100%;</span> Width</li><li><span class="tag">border: 1px solid;</span> Border</li><li><span class="tag">border-radius: 8px;</span> Round corners</li><li><span class="tag">display: flex;</span> Layout</li></ul>
+    </div>
+    <div>
+      <h4>CSS selectors</h4>
+      <ul><li><span class="tag">* { }</span> All elements</li><li><span class="tag">p { }</span> By tag</li><li><span class="tag">.class { }</span> By class</li><li><span class="tag">#id { }</span> By ID</li><li><span class="tag">h1, h2 { }</span> Multiple</li><li><span class="tag">.card p { }</span> Child</li><li><span class="tag">a:hover { }</span> Hover</li><li><span class="tag">li:first-child { }</span> First child</li></ul>
+    </div>
+    <div>
+      <h4>Semantic layout</h4>
+      <ul><li><span class="tag">&lt;header&gt;</span> Page top</li><li><span class="tag">&lt;nav&gt;</span> Navigation</li><li><span class="tag">&lt;main&gt;</span> Main content</li><li><span class="tag">&lt;section&gt;</span> Content block</li><li><span class="tag">&lt;article&gt;</span> Independent item</li><li><span class="tag">&lt;aside&gt;</span> Sidebar</li><li><span class="tag">&lt;footer&gt;</span> Page bottom</li><li><span class="tag">&lt;figure&gt; &lt;figcaption&gt;</span> Image + caption</li></ul>
+    </div>
+  </div>
+
+  <hr class="hr-divider">
+
+  <p style="font-size: 1.1rem; font-weight: 500;">🎯 You now have everything: concepts, all tags, syntax, differences, exercises, and a cheat sheet. Good luck!</p>
+  <div class="footnote">HTML &amp; CSS — complete study guide · compiled from the ultimate one-page reference</div>
+</div>
 </body>
 </html>
