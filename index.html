@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>HTML & CSS – complete study guide</title>
+  <title>Python Exam Revision · full scope</title>
   <style>
     /* ----- global reset & base ----- */
     * {
@@ -13,8 +13,8 @@
     }
 
     body {
-      background: #f8fafc;
-      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+      background: #f2f6fc;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
       color: #0b1a2f;
       padding: 2rem 1rem;
       line-height: 1.6;
@@ -26,14 +26,7 @@
       background: white;
       border-radius: 32px;
       padding: 2.5rem 2rem;
-      box-shadow: 0 20px 40px -12px rgba(0, 20, 40, 0.25);
-    }
-
-    h1, h2, h3, h4 {
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      margin-top: 2rem;
-      margin-bottom: 0.75rem;
+      box-shadow: 0 20px 40px -12px rgba(0, 20, 40, 0.2);
     }
 
     h1 {
@@ -44,6 +37,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      letter-spacing: -0.02em;
     }
 
     .subhead {
@@ -60,12 +54,15 @@
       border-bottom: 3px solid #dce6f0;
       padding-bottom: 0.4rem;
       color: #10345e;
+      margin-top: 2.4rem;
+      margin-bottom: 0.75rem;
     }
 
     h3 {
       font-size: 1.4rem;
       color: #1a4a7a;
       margin-top: 1.8rem;
+      margin-bottom: 0.5rem;
     }
 
     h4 {
@@ -81,7 +78,7 @@
     }
 
     /* ----- code & pre ----- */
-    code, .code-block {
+    code, .code-block, .inline-code {
       background: #eef3f9;
       font-family: 'JetBrains Mono', 'Cascadia Code', 'Fira Code', monospace;
       font-size: 0.9rem;
@@ -89,6 +86,9 @@
       border-radius: 8px;
       color: #0b2b4a;
       border: 1px solid #d7e0ea;
+    }
+
+    .inline-code {
       white-space: nowrap;
     }
 
@@ -116,17 +116,8 @@
       font-size: 0.88rem;
     }
 
-    .inline-code {
-      background: #eef3f9;
-      padding: 0.2rem 0.5rem;
-      border-radius: 6px;
-      font-family: monospace;
-      font-size: 0.9rem;
-      border: 1px solid #d7e0ea;
-    }
-
     /* ----- tables & cards ----- */
-    .feature-table {
+    .exam-table {
       width: 100%;
       border-collapse: collapse;
       margin: 1.5rem 0;
@@ -137,7 +128,7 @@
       box-shadow: 0 2px 8px rgba(0,20,40,0.06);
     }
 
-    .feature-table th {
+    .exam-table th {
       background: #1f3d62;
       color: white;
       font-weight: 600;
@@ -145,193 +136,82 @@
       text-align: left;
     }
 
-    .feature-table td {
+    .exam-table td {
       padding: 0.8rem 1rem;
       border-bottom: 1px solid #dfe8f2;
     }
 
-    .feature-table tr:last-child td {
+    .exam-table tr:last-child td {
       border-bottom: none;
     }
 
-    .tag-grid {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 0.15rem 1rem;
-      background: #f6faff;
-      border-radius: 18px;
-      padding: 0.8rem 1.5rem;
-      margin: 1rem 0;
+    .highlight-box {
+      background: #e5effa;
+      border-radius: 20px;
+      padding: 1.2rem 1.8rem;
+      margin: 1.2rem 0;
+      border-left: 6px solid #1f4e7a;
     }
 
-    .tag-grid .tag {
-      font-family: monospace;
-      font-weight: 600;
-      color: #0b3f6b;
-      background: #e5edf7;
-      padding: 0.15rem 0.6rem;
-      border-radius: 24px;
-      display: inline-block;
-      font-size: 0.9rem;
-    }
-
-    .tag-grid .desc {
-      color: #1b2f48;
-      padding: 0.3rem 0;
-    }
-
-    .tag-grid .badge {
+    .badge {
       background: #d5e2f0;
       font-size: 0.7rem;
       border-radius: 30px;
-      padding: 0.1rem 0.7rem;
-      margin-left: 0.4rem;
-      font-weight: 500;
+      padding: 0.1rem 0.8rem;
+      font-weight: 600;
       color: #1d3f62;
       text-transform: uppercase;
       letter-spacing: 0.02em;
-    }
-
-    .box-model-visual {
-      background: #e9f0fa;
-      border-radius: 28px;
-      padding: 1.8rem 1.5rem;
-      margin: 1.5rem 0;
-      text-align: center;
-      font-family: monospace;
-      border: 2px dashed #1e4b78;
-      font-size: 0.9rem;
-    }
-
-    .box-model-visual .layer {
-      background: white;
-      border-radius: 20px;
-      padding: 0.8rem;
-      margin: 0.3rem auto;
-      max-width: 80%;
-      border: 2px solid #1e4b78;
-    }
-
-    .box-model-visual .layer.margin {
-      background: #d9e6f7;
-      border-style: dashed;
-    }
-
-    .box-model-visual .layer.border {
-      background: #bcd2e9;
-      border-style: solid;
-    }
-
-    .box-model-visual .layer.padding {
-      background: #9db9db;
-      border-style: dotted;
-    }
-
-    .box-model-visual .layer.content {
-      background: #6d94bf;
-      color: white;
-      border: 2px solid #0a2f55;
-    }
-
-    /* ----- exercises ----- */
-    .exercise {
-      background: #f2f7ff;
-      border-radius: 24px;
-      padding: 1.8rem 2rem;
-      margin: 2rem 0;
-      border-left: 6px solid #2a6b9e;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-    }
-
-    .exercise .q {
-      font-weight: 600;
-      font-size: 1.1rem;
-      margin-bottom: 0.4rem;
-      color: #0b2a4a;
-    }
-
-    .exercise .type {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      background: #d4e2f5;
       display: inline-block;
-      padding: 0.1rem 1rem;
-      border-radius: 40px;
-      color: #103c63;
-      font-weight: 600;
+      margin-right: 0.4rem;
     }
 
-    .exercise .answer {
-      background: white;
-      padding: 1.2rem 1.5rem;
-      border-radius: 16px;
-      margin-top: 0.8rem;
-      border: 1px solid #ceddec;
-      font-family: monospace;
-      white-space: pre-wrap;
-      word-break: break-word;
-      color: #0b2b4a;
-      font-size: 0.95rem;
+    .badge-exam {
+      background: #f5d742;
+      color: #1d3f62;
     }
 
-    .exercise .answer code {
-      background: #e6eefa;
-      border: none;
-    }
-
-    .exercise .mcq {
-      list-style: none;
-      padding: 0.3rem 0;
-    }
-
-    .exercise .mcq li {
-      padding: 0.15rem 0.2rem;
-    }
-
-    .hr-divider {
-      border: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #cbdae9, transparent);
-      margin: 2.8rem 0;
-    }
-
-    /* cheat sheet */
-    .cheat-grid {
+    .grid-2col {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem 3rem;
-      background: #f6faff;
-      border-radius: 28px;
-      padding: 1.8rem 2rem;
-      margin: 1.5rem 0;
+      gap: 1.5rem 2rem;
+      margin: 1rem 0;
     }
 
-    .cheat-grid ul {
+    .grid-2col ul {
       list-style: none;
       padding: 0;
     }
 
-    .cheat-grid li {
+    .grid-2col li {
       padding: 0.25rem 0;
-      border-bottom: 1px solid #dfe8f2;
-      display: flex;
-      justify-content: space-between;
+      border-bottom: 1px solid #e0e8f2;
     }
 
-    .cheat-grid .tag {
+    .grid-2col .tag {
       font-family: monospace;
       font-weight: 600;
       color: #103a62;
     }
 
-    @media (max-width: 700px) {
-      .container { padding: 1.5rem 1rem; }
-      h1 { font-size: 2rem; }
-      .cheat-grid { grid-template-columns: 1fr; gap: 1rem; }
-      .tag-grid { grid-template-columns: 1fr; gap: 0.2rem; }
-      .feature-table { font-size: 0.85rem; }
-      .box-model-visual .layer { max-width: 100%; }
+    .example-box {
+      background: #f6faff;
+      border-radius: 18px;
+      padding: 1.2rem 1.8rem;
+      margin: 1rem 0;
+      border: 1px solid #d7e0ea;
+    }
+
+    .exam-tip {
+      background: #eef7e9;
+      border-radius: 18px;
+      padding: 0.8rem 1.8rem;
+      border-left: 6px solid #2b7a4b;
+      margin: 1.2rem 0;
+    }
+
+    .exam-tip strong {
+      color: #145a32;
     }
 
     .footnote {
@@ -342,391 +222,317 @@
       padding-top: 1.8rem;
       font-size: 0.95rem;
     }
+
+    @media (max-width: 700px) {
+      .container { padding: 1.5rem 1rem; }
+      h1 { font-size: 2rem; }
+      .grid-2col { grid-template-columns: 1fr; }
+    }
+
+    .hr-divider {
+      border: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #cbdae9, transparent);
+      margin: 2.8rem 0;
+    }
+
+    .checklist-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.3rem 2rem;
+      background: #f2f7ff;
+      border-radius: 24px;
+      padding: 1.5rem 2rem;
+      margin: 1.5rem 0;
+    }
+
+    .checklist-grid li {
+      list-style: none;
+      padding: 0.3rem 0;
+    }
+
+    .checklist-grid li::before {
+      content: "✓ ";
+      color: #1f7a4a;
+      font-weight: 700;
+    }
   </style>
 </head>
 <body>
 <div class="container">
 
-  <h1>🌐 HTML & CSS · complete study guide</h1>
-  <div class="subhead">Everything in one page — concepts, all tags, syntax, differences, exercises, cheat sheet</div>
+  <h1>🐍 Python Exam Revision · full scope</h1>
+  <div class="subhead">IPO · variables · loops · nested if · functions · text files — everything you need</div>
 
-  <!-- 1. WHAT IS HTML -->
-  <h2>1. What is HTML?</h2>
-  <p><strong>HTML</strong> (HyperText Markup Language) is the standard language used to create the structure and content of webpages. Every element you see — headings, paragraphs, images, buttons, links — exists because an HTML tag placed it there.</p>
-  <p>HTML does <em>not</em> make things look pretty. It only defines what exists and in what order.</p>
-  <h4>Minimal HTML page</h4>
-  <pre class="code-block"><code>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;My First Page&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Hello World&lt;/h1&gt;
-    &lt;p&gt;This is my first webpage.&lt;/p&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-
-  <!-- 2. WHAT IS CSS -->
-  <h2>2. What is CSS?</h2>
-  <p><strong>CSS</strong> (Cascading Style Sheets) is the language used to style HTML elements — controlling colors, fonts, sizes, spacing, layout, animations, and more. CSS cannot create content; it only changes how existing HTML elements appear.</p>
-  <p>CSS is called "cascading" because when multiple style rules target the same element, they follow a specific order of priority.</p>
-  <h4>CSS that styles the page above</h4>
-  <pre class="code-block"><code>body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  margin: 40px;
-}
-h1 {
-  color: navy;
-  font-size: 36px;
-}
-p {
-  color: #444;
-  line-height: 1.6;
-}</code></pre>
-
-  <!-- 3. CORE DIFFERENCE -->
-  <h2>3. The core difference</h2>
-  <p><strong>Analogy:</strong> HTML is the architecture — front door, rooms, windows. CSS is the interior design — paint, curtains, furniture. You need both, but they do completely different jobs.</p>
-  <p><strong>HTML answers:</strong> What is on the page? Is this a heading or a paragraph? What text? What order?</p>
-  <p><strong>CSS answers:</strong> What color? How large? Where is it positioned? Padding? Border? Hover effect?</p>
-
-  <table class="feature-table">
-    <thead><tr><th>Feature</th><th>HTML</th><th>CSS</th></tr></thead>
+  <!-- 1. IPO -->
+  <h2>1. IPO – Input · Process · Output</h2>
+  <p><strong>IPO</strong> is one of the most common theory questions. You must be able to identify the three parts from a problem description.</p>
+  <div class="highlight-box">
+    <strong>Exam favourite</strong>
+  </div>
+  <table class="exam-table">
+    <thead><tr><th>Part</th><th>Meaning</th></tr></thead>
     <tbody>
-      <tr><td>Purpose</td><td>Structure &amp; content</td><td>Style &amp; appearance</td></tr>
-      <tr><td>File extension</td><td>.html</td><td>.css</td></tr>
-      <tr><td>Syntax pattern</td><td>&lt;tag&gt;content&lt;/tag&gt;</td><td>selector { property: value; }</td></tr>
-      <tr><td>Can it work alone?</td><td>Yes (but looks plain)</td><td>No — needs HTML</td></tr>
-      <tr><td>Controls</td><td>Text, images, links, forms</td><td>Colors, fonts, spacing, layout</td></tr>
-      <tr><td>Key characters</td><td>&lt; &gt; / = " "</td><td>{ } : ; . # *</td></tr>
-      <tr><td>Analogy</td><td>Skeleton</td><td>Skin &amp; clothing</td></tr>
+      <tr><td><strong>Input</strong></td><td>Data entered by the user (or read from a file)</td></tr>
+      <tr><td><strong>Process</strong></td><td>Calculations or operations performed</td></tr>
+      <tr><td><strong>Output</strong></td><td>Result displayed to the user</td></tr>
     </tbody>
   </table>
 
-  <!-- 4. HTML SYNTAX -->
-  <h2>4. HTML syntax explained</h2>
-  <p>HTML is made up of <strong>elements</strong>. Each element consists of an opening tag, content, and a closing tag. Some tags are self-closing.</p>
-  <pre class="code-block"><code>&lt;h1&gt;Hello World!&lt;/h1&gt;
-&lt;a href="https://example.com"&gt;Visit us&lt;/a&gt;</code></pre>
-  <p><span class="inline-code">&lt;img src="photo.jpg"&gt;</span> · <span class="inline-code">&lt;br&gt;</span> · <span class="inline-code">&lt;hr&gt;</span> · <span class="inline-code">&lt;input type="text"&gt;</span> are self-closing.</p>
-
-  <!-- 5. DOCUMENT STRUCTURE -->
-  <h2>5. HTML document structure</h2>
-  <pre class="code-block"><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="en"&gt;
-  &lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width"&gt;
-    &lt;title&gt;Page Title&lt;/title&gt;
-    &lt;link rel="stylesheet" href="styles.css"&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;My Heading&lt;/h1&gt;
-    &lt;p&gt;My paragraph.&lt;/p&gt;
-  &lt;/body&gt;
-&lt;/html&gt;</code></pre>
-  <div class="tag-grid">
-    <div><span class="tag">&lt;!DOCTYPE html&gt;</span></div><div class="desc">Declares HTML5. Must be first line.</div>
-    <div><span class="tag">&lt;html&gt;</span></div><div class="desc">Root element. <span class="badge">lang</span></div>
-    <div><span class="tag">&lt;head&gt;</span></div><div class="desc">Metadata (not visible).</div>
-    <div><span class="tag">&lt;meta&gt;</span></div><div class="desc">Charset, viewport, etc.</div>
-    <div><span class="tag">&lt;title&gt;</span></div><div class="desc">Browser tab title.</div>
-    <div><span class="tag">&lt;link&gt;</span></div><div class="desc">External resources (CSS).</div>
-    <div><span class="tag">&lt;body&gt;</span></div><div class="desc">All visible content.</div>
+  <h4>Example: discount calculator</h4>
+  <div class="example-box">
+    <p><strong>Problem:</strong> A program asks the user for a price, calculates a 10% discount, and shows the final price.</p>
+    <table class="exam-table" style="margin:0.5rem 0;">
+      <tr><td><strong>Input</strong></td><td><code>price</code></td></tr>
+      <tr><td><strong>Process</strong></td><td><code>discount = price * 0.10</code> and <code>final_price = price - discount</code></td></tr>
+      <tr><td><strong>Output</strong></td><td><code>final_price</code></td></tr>
+    </table>
   </div>
 
-  <!-- 6. HTML TAGS complete reference -->
-  <h2>6. HTML tags — complete reference</h2>
-  <h3>Text &amp; headings</h3>
-  <div class="tag-grid">
-    <div><span class="tag">&lt;h1&gt;–&lt;h6&gt;</span></div><div class="desc">Headings. Only one &lt;h1&gt; per page.</div>
-    <div><span class="tag">&lt;p&gt;</span></div><div class="desc">Paragraph block.</div>
-    <div><span class="tag">&lt;span&gt;</span></div><div class="desc">Inline container for styling.</div>
-    <div><span class="tag">&lt;strong&gt;</span> <span class="badge">semantic</span></div><div class="desc">Bold + importance.</div>
-    <div><span class="tag">&lt;em&gt;</span> <span class="badge">semantic</span></div><div class="desc">Italic + emphasis.</div>
-    <div><span class="tag">&lt;b&gt;</span></div><div class="desc">Bold (visual only).</div>
-    <div><span class="tag">&lt;i&gt;</span></div><div class="desc">Italic (visual only).</div>
-    <div><span class="tag">&lt;br&gt;</span> <span class="badge">self-closing</span></div><div class="desc">Line break.</div>
-    <div><span class="tag">&lt;hr&gt;</span> <span class="badge">self-closing</span></div><div class="desc">Horizontal rule.</div>
-    <div><span class="tag">&lt;blockquote&gt;</span></div><div class="desc">Quotation block.</div>
-    <div><span class="tag">&lt;pre&gt;</span></div><div class="desc">Preformatted text.</div>
-    <div><span class="tag">&lt;code&gt;</span></div><div class="desc">Inline code snippet.</div>
-    <div><span class="tag">&lt;sub&gt; / &lt;sup&gt;</span></div><div class="desc">Subscript / superscript.</div>
+  <div class="exam-tip">
+    <strong>📌 Exam tip:</strong> When asked for IPO, do <em>not</em> write code. Write the variables or values used for input, processing, and output.
   </div>
 
-  <h3>Links &amp; navigation</h3>
-  <div class="tag-grid">
-    <div><span class="tag">&lt;a&gt;</span></div><div class="desc">Hyperlink. <span class="badge">href</span> <span class="badge">target</span></div>
-    <div><span class="tag">&lt;nav&gt;</span> <span class="badge">semantic</span></div><div class="desc">Navigation section.</div>
-  </div>
-
-  <h3>Images &amp; media</h3>
-  <div class="tag-grid">
-    <div><span class="tag">&lt;img&gt;</span> <span class="badge">self-closing</span></div><div class="desc">Image. <span class="badge">src</span> <span class="badge">alt</span></div>
-    <div><span class="tag">&lt;figure&gt;</span> <span class="badge">semantic</span></div><div class="desc">Groups image + caption.</div>
-    <div><span class="tag">&lt;figcaption&gt;</span></div><div class="desc">Caption for figure.</div>
-    <div><span class="tag">&lt;video&gt;</span></div><div class="desc">Video player.</div>
-    <div><span class="tag">&lt;audio&gt;</span></div><div class="desc">Audio player.</div>
-    <div><span class="tag">&lt;iframe&gt;</span></div><div class="desc">Embed another page.</div>
-  </div>
-
-  <h3>Lists</h3>
-  <div class="tag-grid">
-    <div><span class="tag">&lt;ul&gt;</span></div><div class="desc">Unordered (bullets).</div>
-    <div><span class="tag">&lt;ol&gt;</span></div><div class="desc">Ordered (numbers).</div>
-    <div><span class="tag">&lt;li&gt;</span></div><div class="desc">List item.</div>
-    <div><span class="tag">&lt;dl&gt;</span></div><div class="desc">Definition list.</div>
-    <div><span class="tag">&lt;dt&gt; &lt;dd&gt;</span></div><div class="desc">Term / definition.</div>
-  </div>
-
-  <h3>Layout &amp; containers</h3>
-  <div class="tag-grid">
-    <div><span class="tag">&lt;div&gt;</span></div><div class="desc">Generic block container.</div>
-    <div><span class="tag">&lt;span&gt;</span></div><div class="desc">Generic inline container.</div>
-    <div><span class="tag">&lt;header&gt;</span> <span class="badge">semantic</span></div><div class="desc">Page / section top.</div>
-    <div><span class="tag">&lt;footer&gt;</span> <span class="badge">semantic</span></div><div class="desc">Page / section bottom.</div>
-    <div><span class="tag">&lt;main&gt;</span> <span class="badge">semantic</span></div><div class="desc">Primary content (only one).</div>
-    <div><span class="tag">&lt;section&gt;</span> <span class="badge">semantic</span></div><div class="desc">Thematic group.</div>
-    <div><span class="tag">&lt;article&gt;</span> <span class="badge">semantic</span></div><div class="desc">Self-contained content.</div>
-    <div><span class="tag">&lt;aside&gt;</span> <span class="badge">semantic</span></div><div class="desc">Sidebar / related content.</div>
-  </div>
-
-  <h3>Tables</h3>
-  <div class="tag-grid">
-    <div><span class="tag">&lt;table&gt;</span></div><div class="desc">Table container.</div>
-    <div><span class="tag">&lt;thead&gt; &lt;tbody&gt; &lt;tfoot&gt;</span></div><div class="desc">Header / body / footer.</div>
-    <div><span class="tag">&lt;tr&gt;</span></div><div class="desc">Table row.</div>
-    <div><span class="tag">&lt;th&gt;</span></div><div class="desc">Header cell. <span class="badge">scope</span></div>
-    <div><span class="tag">&lt;td&gt;</span></div><div class="desc">Data cell. <span class="badge">colspan</span> <span class="badge">rowspan</span></div>
-  </div>
-
-  <h3>Forms</h3>
-  <div class="tag-grid">
-    <div><span class="tag">&lt;form&gt;</span></div><div class="desc">Form container. <span class="badge">action</span> <span class="badge">method</span></div>
-    <div><span class="tag">&lt;input&gt;</span> <span class="badge">self-closing</span></div><div class="desc">Versatile input. <span class="badge">type</span></div>
-    <div><span class="tag">&lt;label&gt;</span></div><div class="desc">Describes a control. <span class="badge">for</span></div>
-    <div><span class="tag">&lt;textarea&gt;</span></div><div class="desc">Multi-line text.</div>
-    <div><span class="tag">&lt;select&gt; &lt;option&gt;</span></div><div class="desc">Dropdown menu.</div>
-    <div><span class="tag">&lt;button&gt;</span></div><div class="desc">Clickable button. <span class="badge">type</span></div>
-    <div><span class="tag">&lt;fieldset&gt; &lt;legend&gt;</span></div><div class="desc">Group related controls.</div>
-  </div>
-
-  <h4>Complete contact form example</h4>
-  <pre class="code-block"><code>&lt;form action="/contact" method="post"&gt;
-  &lt;fieldset&gt;
-    &lt;legend&gt;Your details&lt;/legend&gt;
-    &lt;label for="name"&gt;Full name:&lt;/label&gt;
-    &lt;input type="text" id="name" name="name" placeholder="Jane Smith"&gt;
-    &lt;label for="email"&gt;Email address:&lt;/label&gt;
-    &lt;input type="email" id="email" name="email" placeholder="jane@email.com"&gt;
-    &lt;label for="subject"&gt;Subject:&lt;/label&gt;
-    &lt;select id="subject" name="subject"&gt;
-      &lt;option value="general"&gt;General enquiry&lt;/option&gt;
-      &lt;option value="support"&gt;Technical support&lt;/option&gt;
-      &lt;option value="billing"&gt;Billing&lt;/option&gt;
-    &lt;/select&gt;
-    &lt;label for="message"&gt;Message:&lt;/label&gt;
-    &lt;textarea id="message" name="message" rows="5"&gt;&lt;/textarea&gt;
-    &lt;button type="submit"&gt;Send message&lt;/button&gt;
-  &lt;/fieldset&gt;
-&lt;/form&gt;</code></pre>
-
-  <!-- 7. CSS SYNTAX -->
-  <h2>7. CSS syntax explained</h2>
-  <p>A CSS rule has a <strong>selector</strong>, a <strong>property</strong>, and a <strong>value</strong>.</p>
-  <pre class="code-block"><code>h1 {
-  color: navy;
-  font-size: 32px;
-}</code></pre>
-  <h3>Three types of CSS selector</h3>
-  <pre class="code-block"><code>/* 1. Element selector */
-p { color: gray; }
-
-/* 2. Class selector */
-.highlight { background: yellow; }
-
-/* 3. ID selector */
-#header { background: navy; }
-
-/* combined, descendant, pseudo */
-h1, h2, h3 { font-family: Georgia; }
-.card p { color: #555; }
-.btn:hover { background: darkblue; }</code></pre>
-
-  <!-- 8. LINKING CSS -->
-  <h2>8. Linking CSS to HTML</h2>
-  <p><strong>External (best practice):</strong></p>
-  <pre class="code-block"><code>&lt;link rel="stylesheet" href="styles.css"&gt;</code></pre>
-  <p><strong>Internal (single page):</strong></p>
-  <pre class="code-block"><code>&lt;style&gt; h1 { color: navy; } &lt;/style&gt;</code></pre>
-  <p><strong>Inline (avoid):</strong> <span class="inline-code">&lt;h1 style="color: navy;"&gt;</span></p>
-
-  <!-- 9. COMMON CSS PROPERTIES -->
-  <h2>9. Common CSS properties</h2>
-  <div class="cheat-grid">
+  <!-- 2. Variable naming -->
+  <h2>2. Variable Naming Rules</h2>
+  <div class="grid-2col">
     <div>
-      <h4>Text &amp; font</h4>
+      <h4>✅ Valid variable names</h4>
       <ul>
-        <li><span class="tag">color:</span> red;</li>
-        <li><span class="tag">font-size:</span> 18px;</li>
-        <li><span class="tag">font-family:</span> Arial, sans-serif;</li>
-        <li><span class="tag">font-weight:</span> bold;</li>
-        <li><span class="tag">text-align:</span> center;</li>
-        <li><span class="tag">text-decoration:</span> underline;</li>
-        <li><span class="tag">line-height:</span> 1.6;</li>
+        <li><span class="tag">student_name</span> — letters and underscore</li>
+        <li><span class="tag">totalMarks</span> — starts with a letter</li>
+        <li><span class="tag">_count</span> — can start with underscore</li>
+        <li><span class="tag">age2</span> — numbers after first char</li>
       </ul>
     </div>
     <div>
-      <h4>Background &amp; borders</h4>
+      <h4>❌ Invalid variable names</h4>
       <ul>
-        <li><span class="tag">background-color:</span> #f0f0f0;</li>
-        <li><span class="tag">background-image:</span> url(img.jpg);</li>
-        <li><span class="tag">border:</span> 1px solid black;</li>
-        <li><span class="tag">border-radius:</span> 8px;</li>
-        <li><span class="tag">box-shadow:</span> 2px 2px 5px gray;</li>
-      </ul>
-    </div>
-    <div>
-      <h4>Spacing — box model</h4>
-      <ul>
-        <li><span class="tag">width:</span> 300px;</li>
-        <li><span class="tag">height:</span> 200px;</li>
-        <li><span class="tag">padding:</span> 20px;</li>
-        <li><span class="tag">margin:</span> 20px auto;</li>
-        <li><span class="tag">margin-bottom:</span> 16px;</li>
-      </ul>
-    </div>
-    <div>
-      <h4>Layout &amp; display</h4>
-      <ul>
-        <li><span class="tag">display:</span> block / inline / flex / grid / none;</li>
-        <li><span class="tag">position:</span> relative / absolute;</li>
-        <li><span class="tag">float:</span> left;</li>
-        <li><span class="tag">overflow:</span> hidden;</li>
-        <li><span class="tag">visibility:</span> hidden;</li>
+        <li><span class="tag">2age</span> — starts with a number</li>
+        <li><span class="tag">total marks</span> — contains space</li>
+        <li><span class="tag">class</span> — Python keyword</li>
+        <li><span class="tag">student-name</span> — contains hyphen</li>
       </ul>
     </div>
   </div>
-
-  <!-- 10. BOX MODEL -->
-  <h2>10. The CSS box model</h2>
-  <div class="box-model-visual">
-    <div class="layer margin">MARGIN (outside border)</div>
-    <div class="layer border">BORDER</div>
-    <div class="layer padding">PADDING</div>
-    <div class="layer content">CONTENT (width / height)</div>
-  </div>
-  <pre class="code-block"><code>div {
-  width: 200px;
-  padding: 20px;
-  border: 2px solid;
-  margin: 30px;
-}
-/* total width = 200 + 20+20 + 2+2 + 30+30 = 304px */</code></pre>
-
-  <!-- 11. EXERCISES -->
-  <h2>11. Exercises</h2>
-
-  <!-- Q1 -->
-  <div class="exercise"><div class="q">1. What does CSS stand for?</div><div class="type">multiple choice</div>
-    <ul class="mcq"><li>a) Computer Style Sheets</li><li>b) Cascading Style Sheets</li><li>c) Creative Style Syntax</li><li>d) Colorful Style Sheets</li></ul>
-    <div class="answer"><strong>✅ b) Cascading Style Sheets</strong></div>
-  </div>
-  <!-- Q2 -->
-  <div class="exercise"><div class="q">2. Which tag links an external CSS file to HTML?</div><div class="type">multiple choice</div>
-    <ul class="mcq"><li>a) &lt;style src="styles.css"&gt;</li><li>b) &lt;css href="styles.css"&gt;</li><li>c) &lt;link rel="stylesheet" href="styles.css"&gt;</li><li>d) &lt;script href="styles.css"&gt;</li></ul>
-    <div class="answer"><strong>✅ c) &lt;link rel="stylesheet" href="styles.css"&gt;</strong></div>
-  </div>
-  <!-- Q3 -->
-  <div class="exercise"><div class="q">3. Is this HTML or CSS?</div><div class="type">identify</div>
-    <pre>.nav { background-color: black; color: white; }</pre>
-    <div class="answer"><strong>✅ CSS</strong></div>
-  </div>
-  <!-- Q4 -->
-  <div class="exercise"><div class="q">4. Is this HTML or CSS?</div><div class="type">identify</div>
-    <pre>&lt;ul&gt;&lt;li&gt;Apples&lt;/li&gt;&lt;li&gt;Oranges&lt;/li&gt;&lt;/ul&gt;</pre>
-    <div class="answer"><strong>✅ HTML</strong></div>
-  </div>
-  <!-- Q5 -->
-  <div class="exercise"><div class="q">5. What is the correct selector for elements with class="box"?</div><div class="type">multiple choice</div>
-    <ul class="mcq"><li>a) #box { }</li><li>b) .box { }</li><li>c) *box { }</li><li>d) box { }</li></ul>
-    <div class="answer"><strong>✅ b) .box { }</strong></div>
-  </div>
-  <!-- Q6 -->
-  <div class="exercise"><div class="q">6. What is wrong with this HTML? <span class="inline-code">&lt;p&gt;Welcome to my website.&lt;p&gt;</span></div><div class="type">spot the bug</div>
-    <div class="answer"><strong>❌ The closing tag should be &lt;/p&gt; (not &lt;p&gt;).</strong></div>
-  </div>
-  <!-- Q7 -->
-  <div class="exercise"><div class="q">7. What is wrong with this CSS?</div><div class="type">spot the bug</div>
-    <pre>h1
-  color: blue
-  font-size: 32px</pre>
-    <div class="answer"><strong>❌ Missing curly braces { } and semicolons after each declaration.</strong></div>
-  </div>
-  <!-- Q8 -->
-  <div class="exercise"><div class="q">8. What is the difference between &lt;div&gt; and &lt;section&gt;?</div><div class="type">multiple choice</div>
-    <ul class="mcq"><li>a) &lt;div&gt; can only contain text; &lt;section&gt; can contain anything</li><li>b) They are identical</li><li>c) &lt;div&gt; is generic; &lt;section&gt; is semantic and implies a thematic group</li><li>d) &lt;section&gt; is for CSS only</li></ul>
-    <div class="answer"><strong>✅ c) &lt;div&gt; is generic; &lt;section&gt; is semantic.</strong></div>
-  </div>
-  <!-- Q9 -->
-  <div class="exercise"><div class="q">9. Write the HTML for an image called logo.png, alt text "Company logo".</div><div class="type">write the code</div>
-    <div class="answer"><strong>&lt;img src="logo.png" alt="Company logo"&gt;</strong></div>
-  </div>
-  <!-- Q10 -->
-  <div class="exercise"><div class="q">10. Write CSS to center text and set a blue background on all &lt;header&gt; elements.</div><div class="type">write the code</div>
-    <div class="answer"><strong>header { text-align: center; background-color: blue; }</strong></div>
-  </div>
-  <!-- Q11 -->
-  <div class="exercise"><div class="q">11. What is the purpose of the &lt;label&gt; tag in forms?</div><div class="type">multiple choice</div>
-    <ul class="mcq"><li>a) Creates a text input</li><li>b) Describes a form control and improves accessibility</li><li>c) Submits the form</li><li>d) Only for styling</li></ul>
-    <div class="answer"><strong>✅ b) Describes a form control and improves accessibility.</strong></div>
-  </div>
-  <!-- Q12 -->
-  <div class="exercise"><div class="q">12. What box-model property creates space OUTSIDE the border?</div><div class="type">multiple choice</div>
-    <ul class="mcq"><li>a) padding</li><li>b) margin</li><li>c) border</li><li>d) spacing</li></ul>
-    <div class="answer"><strong>✅ b) margin</strong></div>
-  </div>
-  <!-- Q13 -->
-  <div class="exercise"><div class="q">13. Build a labelled email input: label "Email address", linked, input type="email" name="email".</div><div class="type">write the code</div>
-    <div class="answer"><strong>&lt;label for="email"&gt;Email address:&lt;/label&gt;&lt;input type="email" id="email" name="email"&gt;</strong></div>
-  </div>
-  <!-- Q14 -->
-  <div class="exercise"><div class="q">14. True or false: &lt;strong&gt; and &lt;b&gt; produce the exact same result.</div><div class="type">true / false</div>
-    <div class="answer"><strong>❌ False — they look the same but &lt;strong&gt; has semantic importance.</strong></div>
-  </div>
-  <!-- Q15 -->
-  <div class="exercise"><div class="q">15. What is wrong with this form?</div><div class="type">spot the bug</div>
-    <pre>&lt;label&gt;Username:&lt;/label&gt;
-&lt;input type="text" id="user" name="user"&gt;</pre>
-    <div class="answer"><strong>❌ The label is not linked to the input (missing <span class="inline-code">for="user"</span>).</strong></div>
+  <div class="highlight-box" style="margin-top:0.5rem;">
+    <strong>Remember:</strong> Must begin with letter or underscore · no spaces · no special symbols except _ · cannot use Python keywords.
   </div>
 
-  <!-- 12. CHEAT SHEET -->
-  <h2>12. Quick-reference cheat sheet</h2>
-  <div class="cheat-grid">
-    <div>
-      <h4>HTML — essential tags</h4>
-      <ul><li><span class="tag">&lt;h1&gt;–&lt;h6&gt;</span> Headings</li><li><span class="tag">&lt;p&gt;</span> Paragraph</li><li><span class="tag">&lt;a href=""&gt;</span> Link</li><li><span class="tag">&lt;img src="" alt=""&gt;</span> Image</li><li><span class="tag">&lt;div&gt;</span> Block container</li><li><span class="tag">&lt;span&gt;</span> Inline container</li><li><span class="tag">&lt;ul&gt; &lt;ol&gt;</span> Lists</li><li><span class="tag">&lt;table&gt;&lt;tr&gt;&lt;td&gt;</span> Table</li><li><span class="tag">&lt;form&gt;</span> Form</li><li><span class="tag">&lt;input&gt;</span> Input</li><li><span class="tag">&lt;button&gt;</span> Button</li></ul>
-    </div>
-    <div>
-      <h4>CSS — common properties</h4>
-      <ul><li><span class="tag">color:</span> Text color</li><li><span class="tag">background-color:</span> Background</li><li><span class="tag">font-size:</span> Size</li><li><span class="tag">font-family:</span> Font</li><li><span class="tag">font-weight: bold;</span> Weight</li><li><span class="tag">text-align: center;</span> Alignment</li><li><span class="tag">padding: 10px;</span> Inside space</li><li><span class="tag">margin: 20px auto;</span> Outside space</li><li><span class="tag">width: 100%;</span> Width</li><li><span class="tag">border: 1px solid;</span> Border</li><li><span class="tag">border-radius: 8px;</span> Round corners</li><li><span class="tag">display: flex;</span> Layout</li></ul>
-    </div>
-    <div>
-      <h4>CSS selectors</h4>
-      <ul><li><span class="tag">* { }</span> All elements</li><li><span class="tag">p { }</span> By tag</li><li><span class="tag">.class { }</span> By class</li><li><span class="tag">#id { }</span> By ID</li><li><span class="tag">h1, h2 { }</span> Multiple</li><li><span class="tag">.card p { }</span> Child</li><li><span class="tag">a:hover { }</span> Hover</li><li><span class="tag">li:first-child { }</span> First child</li></ul>
-    </div>
-    <div>
-      <h4>Semantic layout</h4>
-      <ul><li><span class="tag">&lt;header&gt;</span> Page top</li><li><span class="tag">&lt;nav&gt;</span> Navigation</li><li><span class="tag">&lt;main&gt;</span> Main content</li><li><span class="tag">&lt;section&gt;</span> Content block</li><li><span class="tag">&lt;article&gt;</span> Independent item</li><li><span class="tag">&lt;aside&gt;</span> Sidebar</li><li><span class="tag">&lt;footer&gt;</span> Page bottom</li><li><span class="tag">&lt;figure&gt; &lt;figcaption&gt;</span> Image + caption</li></ul>
-    </div>
+  <!-- 3. Error correction -->
+  <h2>3. Finding and Correcting Errors</h2>
+  <h4>Example 1: missing colon</h4>
+  <pre class="code-block"><code># Incorrect
+if price > 100
+    discount = price * 0.1
+
+# Correct
+if price > 100:
+    discount = price * 0.1</code></pre>
+
+  <h4>Example 2: wrong indentation</h4>
+  <pre class="code-block"><code># Incorrect
+if price > 100:
+discount = price * 0.1
+
+# Correct
+if price > 100:
+    discount = price * 0.1</code></pre>
+
+  <h4>Example 3: using <code>=</code> instead of <code>==</code></h4>
+  <pre class="code-block"><code># Incorrect (logic error)
+if discount = 10:
+    print("standard discount")
+
+# Correct
+if discount == 10:
+    print("standard discount")</code></pre>
+
+  <div class="exam-tip">
+    <strong>🔍 Quick exam checklist:</strong><br>
+    ✓ colon after <code>if</code>, <code>else</code>, <code>for</code>, <code>while</code> · ✓ indentation · ✓ brackets <code>()</code> · ✓ <code>==</code> for comparisons
   </div>
+
+  <!-- 4. For loops -->
+  <h2>4. For Loops</h2>
+  <h4>Understanding the output</h4>
+  <pre class="code-block"><code>for i in range(5):
+    print(i)   # 0 1 2 3 4</code></pre>
+  <p><code>range(5)</code> means: start at 0, stop before 5.</p>
+
+  <table class="exam-table">
+    <thead><tr><th>Code</th><th>Output</th></tr></thead>
+    <tbody>
+      <tr><td><code>range(3)</code></td><td>0 1 2</td></tr>
+      <tr><td><code>range(1, 4)</code></td><td>1 2 3</td></tr>
+      <tr><td><code>range(2, 10, 2)</code></td><td>2 4 6 8</td></tr>
+      <tr><td><code>range(10, 0, -2)</code></td><td>10 8 6 4 2</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Modify the loop</h4>
+  <pre class="code-block"><code># Original: prints 0 1 2 3 4
+for i in range(5):
+    print(i)
+
+# Modified to print 1–5
+for i in range(1, 6):
+    print(i)
+
+# Modified to print even numbers 2 4 6 8 10
+for i in range(2, 11, 2):
+    print(i)</code></pre>
+
+  <div class="example-box">
+    <p><strong>Exam-style question:</strong> What is the output of <code>for i in range(3, 8): print(i)</code> ?</p>
+    <p><strong>Answer:</strong> 3 4 5 6 7</p>
+  </div>
+
+  <!-- 5. Nested if-else -->
+  <h2>5. Nested If-Else – Discount Calculation</h2>
+  <h4>Logic</h4>
+  <table class="exam-table">
+    <thead><tr><th>Condition</th><th>Discount</th></tr></thead>
+    <tbody>
+      <tr><td>Amount ≥ 1000 and member</td><td>20%</td></tr>
+      <tr><td>Amount ≥ 1000 and not member</td><td>10%</td></tr>
+      <tr><td>Amount &lt; 1000</td><td>5%</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Fill in the blanks example</h4>
+  <pre class="code-block"><code>if amount >= 1000:
+    if member == True:
+        discount = 0.20
+    else:
+        discount = 0.10
+else:
+    discount = 0.05</code></pre>
+
+  <!-- 6. Functions -->
+  <h2>6. Functions</h2>
+  <h4>Basic function</h4>
+  <pre class="code-block"><code>def greet():
+    print("Hello!")
+
+greet()   # Hello!</code></pre>
+
+  <h4>Function with parameters</h4>
+  <pre class="code-block"><code>def add(a, b):
+    return a + b
+
+print(add(7, 9))   # 16</code></pre>
+
+  <h4>Complete the function</h4>
+  <pre class="code-block"><code># Question: write a function that returns the square of a number
+def square(x):
+    return x * x
+
+print(square(5))   # 25</code></pre>
+
+  <h4>Calling a function inside another function</h4>
+  <pre class="code-block"><code>def multiply(a, b):
+    return a * b
+
+def calculate():
+    result = multiply(4, 5)
+    print(result)
+
+calculate()   # 20</code></pre>
+
+  <!-- 7. Text files -->
+  <h2>7. Text Files</h2>
+  <h4>Step 1: Open a file</h4>
+  <pre class="code-block"><code>file = open("marks.txt", "r")   # r = read mode</code></pre>
+
+  <h4>Step 2: Read values</h4>
+  <p>If <code>marks.txt</code> contains:</p>
+  <pre class="code-block"><code>Alice,80
+Bob,70</code></pre>
+  <pre class="code-block"><code>for line in file:
+    name, mark = line.strip().split(",")
+    print(name, int(mark) + 5)</code></pre>
+  <p><strong>Output:</strong> Alice 85 · Bob 75</p>
+
+  <h4>Step 3: Update the file</h4>
+  <pre class="code-block"><code>file = open("marks.txt", "r")
+lines = file.readlines()
+file.close()
+
+updated = []
+for line in lines:
+    name, mark = line.strip().split(",")
+    new_mark = int(mark) + 5
+    updated.append(f"{name},{new_mark}\n")
+
+file = open("marks.txt", "w")
+file.writelines(updated)
+file.close()</code></pre>
+
+  <table class="exam-table">
+    <thead><tr><th>Mode</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><code>r</code></td><td>Read</td></tr>
+      <tr><td><code>w</code></td><td>Write (overwrite)</td></tr>
+      <tr><td><code>a</code></td><td>Append</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Full exam-style example</h4>
+  <div class="example-box">
+    <p><strong>Question:</strong> Read prices from a file, apply 10% discount, save updated prices.</p>
+    <p><strong>File contents (prices.txt):</strong></p>
+    <pre>Bread,20
+Milk,15</pre>
+    <pre class="code-block"><code>file = open("prices.txt", "r")
+lines = file.readlines()
+file.close()
+
+updated = []
+for line in lines:
+    item, price = line.strip().split(",")
+    new_price = float(price) * 0.9
+    updated.append(f"{item},{new_price}\n")
+
+file = open("prices.txt", "w")
+file.writelines(updated)
+file.close()
+
+# Updated file:
+# Bread,18.0
+# Milk,13.5</code></pre>
+  </div>
+
+  <!-- checklist -->
+  <h2>📋 What to Memorise for the Exam</h2>
+  <ul class="checklist-grid">
+    <li>IPO = Input, Process, Output</li>
+    <li>Variable rules (no spaces, no keywords)</li>
+    <li>Fix <code>:</code> and indentation errors</li>
+    <li>Understand <code>range(start, stop, step)</code></li>
+    <li>Nested if/else discount logic</li>
+    <li>Write and call functions</li>
+    <li>Read a file → split values → calculate → write back</li>
+  </ul>
+  <p>This is the exact pattern used in most file-processing exam questions.</p>
 
   <hr class="hr-divider">
 
-  <p style="font-size: 1.1rem; font-weight: 500;">🎯 You now have everything: concepts, all tags, syntax, differences, exercises, and a cheat sheet. Good luck!</p>
-  <div class="footnote">HTML &amp; CSS — complete study guide · compiled from the ultimate one-page reference</div>
+  <h2>⚡ A final 30-second exam strategy</h2>
+  <ul style="list-style: none; padding: 0; font-size: 1.05rem;">
+    <li style="padding: 0.3rem 0;">• <strong>IPO question?</strong> Identify variables only.</li>
+    <li style="padding: 0.3rem 0;">• <strong>Loop question?</strong> Write out the numbers one by one.</li>
+    <li style="padding: 0.3rem 0;">• <strong>Nested if question?</strong> Check the outer condition first.</li>
+    <li style="padding: 0.3rem 0;">• <strong>Function question?</strong> Make sure there is a <code>return</code> if a value is needed.</li>
+    <li style="padding: 0.3rem 0;">• <strong>File question?</strong> <code>open</code> → <code>readlines</code> → <code>split</code> → <code>calculate</code> → <code>writelines</code>.</li>
+  </ul>
+
+  <div class="exam-tip" style="background: #dae6f5; border-left-color: #1f4e7a; margin-top: 1.8rem;">
+    <strong>🎯 You’re exam-ready</strong><br>
+    If you can correctly do one IPO question, one loop output question, one nested if discount question, one function question, and one file update question, you should be able to answer the entire scope your lecturer listed.
+  </div>
+
+  <div class="footnote">Python exam revision · IPO · loops · nested if · functions · text files — complete scope</div>
 </div>
 </body>
 </html>
